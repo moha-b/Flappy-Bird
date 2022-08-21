@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 
 class Score extends StatefulWidget {
-  const Score({Key? key}) : super(key: key);
+  final int score;
+  Score(this.score, {Key? key}) : super(key: key);
 
   @override
   State<Score> createState() => _ScoreState();
@@ -21,7 +22,7 @@ class _ScoreState extends State<Score> {
           children: [
             Text("Score",style: TextStyle(color: Colors.white,fontSize: 30),),
             SizedBox(height: 10,),
-            Text("0",style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text(widget.score.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
           ],),
         // Best TEXT
         Column(
