@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print
 import 'dart:async';
 import 'package:flappy_bird/Ui/Bird.dart';
 import 'package:flappy_bird/Ui/Score.dart';
 import 'package:flappy_bird/Ui/barrier.dart';
+import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,16 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int score = 0;
   // Bird Variables
   static double yAxis = 0;
-  static double xAxis = 0;
   double time = 0;
   double height = 0;
   double gravity = -3.9;  // How strong the Gravity
   double velocity = 2.5;  // How strong the jump
   double initialHeight = yAxis;
-  bool gameHasStarted = false;
+  bool gameHasStarted = false; //TODO: Make it Global
   // Barrier Variables
   static List<double> barrierX = [2, 3.4];
   List<List<double>> barrierY = [
@@ -60,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                   flex: 1,
-                  child: Score(score),),
+                  child: Score(),),
             ]),
       ),
     );
@@ -100,15 +99,18 @@ class _HomePageState extends State<HomePage> {
         timer.cancel();
         _showDialog();
       };
-      time += 0.04 ;
+      time += 0.032 ;
     });
     Timer.periodic(Duration(seconds: 2), (timer) {
       if(birdIsDead()){
         timer.cancel();
-        score = 0;
+        SCORE = 0;
       }else{
         setState(() {
-          score ++;
+          if(SCORE == TOP_SCORE) {
+            TOP_SCORE++;
+          }
+          SCORE++;
         });
       }
     });
@@ -125,7 +127,6 @@ class _HomePageState extends State<HomePage> {
     }
     // Barrier
     for(int i = 0; i < barrierX.length; i++){
-
     }
     return false;
   }
@@ -136,7 +137,7 @@ class _HomePageState extends State<HomePage> {
       yAxis = 0;
       gameHasStarted = false;
       time = 0;
-      score = 0;
+      SCORE = 0;
       initialHeight = yAxis;
       barrierX[0] = 2;
       barrierX[1] = 3.4;

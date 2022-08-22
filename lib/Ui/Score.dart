@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables
 
+import 'package:flappy_bird/model/user.dart';
 import 'package:flutter/material.dart';
+import '../constant/constant.dart';
 
 class Score extends StatefulWidget {
-  final int score;
-  Score(this.score, {Key? key}) : super(key: key);
-
+  Score({Key? key}) : super(key: key);
   @override
   State<Score> createState() => _ScoreState();
 }
@@ -13,6 +13,7 @@ class Score extends StatefulWidget {
 class _ScoreState extends State<Score> {
   @override
   Widget build(BuildContext context) {
+
     return Container(color: Colors.brown,child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -22,7 +23,7 @@ class _ScoreState extends State<Score> {
           children: [
             Text("Score",style: TextStyle(color: Colors.white,fontSize: 30),),
             SizedBox(height: 10,),
-            Text(widget.score.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text(SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
           ],),
         // Best TEXT
         Column(
@@ -30,7 +31,7 @@ class _ScoreState extends State<Score> {
           children: [
             Text("Best",style: TextStyle(color: Colors.white,fontSize: 30)),
             SizedBox(height: 10,),
-            Text("0",style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text(TOP_SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
           ],),
       ],
     ),);
