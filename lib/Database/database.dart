@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 * and is truly simple to utilize.
 * It is an offline database(store data in local devices)
 */
+/// Documentation for [Hive] (https://docs.hivedb.dev/#/)
 var box = Hive.openBox('user');
 final myBox = Hive.box('user');
 

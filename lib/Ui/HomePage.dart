@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print, prefer_const_constructors_in_immutables
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Ui/Bird.dart';
@@ -7,34 +7,14 @@ import 'package:flappy_bird/Ui/barrier.dart';
 import 'package:flappy_bird/Ui/cover.dart';
 import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
 class _HomePageState extends State<HomePage> {
-  // Bird Variables
-  static double yAxis = 0;
-  double time = 0;
-  double height = 0;
-  double gravity = -3.9; // How strong the Gravity
-  double velocity = 2.5; // How strong the jump
-  double initialHeight = yAxis;
-  bool gameHasStarted = false; //TODO: Make it Global
-  // Barrier Variables
-  static List<double> barrierX = [2, 3.4];
-  List<List<double>> barrierY = [
-    // TODO: list of Lists to make different height for the barrier [topHeight,bottomHeight]
-    [0.6, 0.4],
-    [0.4, 0.6],
-  ];
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -50,7 +30,7 @@ class _HomePageState extends State<HomePage> {
                       fit: BoxFit.cover)),
               child: Stack(
                 children: [
-                  Bird(yAxis),
+                  Bird(yAxis, birdWidth, birdHeight),
                   // Tap to play text
                   Container(
                     alignment: Alignment(0, -0.3),
@@ -59,17 +39,17 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
                   ),
-                  Barrier(barrierY[0][0], barrierX[0], true),
-                  Barrier(barrierY[0][1], barrierX[0], false),
-                  Barrier(barrierY[1][0], barrierX[1], true),
-                  Barrier(barrierY[1][1], barrierX[1], false),
+                  Barrier(barrierHeight[0][0], barrierWidth, barrierX[0], true),
+                  Barrier(barrierHeight[0][1], barrierWidth, barrierX[0], false),
+                  Barrier(barrierHeight[1][0], barrierWidth, barrierX[1], true),
+                  Barrier(barrierHeight[1][1], barrierWidth, barrierX[1], false),
                 ],
               ),
             ),
           ),
           Expanded(
             flex: 1,
-            child: gameHasStarted? Score() :Cover(),
+            child: gameHasStarted ? Score() : Cover(),
           ),
         ]),
       ),
@@ -92,27 +72,28 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         yAxis = initialHeight - height;
       });
+      /* <  Barriers Movements  > */
       setState(() {
-        if (barrierX[0] < -1.9) {
-          barrierX[0] += 3.5;
+        if (barrierX[0] < screenEnd) {
+          barrierX[0] += screenStart;
         } else {
-          barrierX[0] -= 0.05;
+          barrierX[0] -= moveToLeft;
         }
       });
       setState(() {
-        if (barrierX[1] < -1.9) {
-          barrierX[1] += 3.5;
+        if (barrierX[1] < screenEnd) {
+          barrierX[1] += screenStart;
         } else {
-          barrierX[1] -= 0.05;
+          barrierX[1] -= moveToLeft;
         }
       });
       if (birdIsDead()) {
         timer.cancel();
         _showDialog();
       }
-      ;
       time += 0.032;
     });
+    /* <  Calculate Score  > */
     Timer.periodic(Duration(seconds: 2), (timer) {
       if (birdIsDead()) {
         timer.cancel();
@@ -130,18 +111,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /*
-  * TODO: Make sure the bird doesn't go out screen
-  *
-  * TODO: Check if the bird hit the barrier
-  */
+  ///TODO: Make sure the [Bird] doesn't go out screen & hit the barrier
   bool birdIsDead() {
     // Screen
     if (yAxis > 1.26 || yAxis < -1.1) {
       return true;
     }
     // Barrier hit box
-    for (int i = 0; i < barrierX.length; i++) {}
+    for (int i = 0; i < barrierX.length; i++) {
+      if (barrierX[i] <= birdWidth &&
+          (barrierX[i] + barrierWidth) >= -birdWidth &&
+          (yAxis <= -1 + barrierHeight[i][0] ||
+              yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
+        return true;
+      }
+    }
     return false;
   }
 
@@ -166,7 +150,7 @@ class _HomePageState extends State<HomePage> {
         return AlertDialog(
           backgroundColor: Colors.white,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           title: Text(
             "..Oops",
             style: TextStyle(color: Colors.blue[900], fontSize: 25),
