@@ -1,64 +1,29 @@
 // ignore_for_file: avoid_print
+import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:flappy_bird/model/user.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+/*
+* [Hive] is a quick, lightweight, NoSQL database for flutter and dart applications.
+* Hive is truly helpful if you need a straightforward key-value database without numerous relations
+* and is truly simple to utilize.
+* It is an offline database(store data in local devices)
+*/
+var box = Hive.openBox('user');
+final myBox = Hive.box('user');
 
-class Sql{
+void write(int id, int score){
+  myBox.put(id, score);
+  print("Write func is Activated");
+}
 
-  static Database? _db ;
-
-  Future<Database?> get db async {
-    if (_db == null){
-      _db  = await initial() ;
-      return _db ;
-    }else {
-      return _db ;
-    }
+int read(int id){
+  print("Read func is Activated");
+  if(myBox.get(id) == null){
+    print("0 has been returned");
+    return 0;
   }
+  return myBox.get(id);
+}
 
-  initial() async {
-    String file = await getDatabasesPath() ;
-    String path = join(file , 'database.db') ;
-    Database database = await openDatabase(path , onCreate: _onCreate, version: 1) ;
-    return database ;
-  }
-
-  _onCreate(Database database , int version) async {
-    await database.execute('''
-  CREATE TABLE "$User" (
-    "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT, 
-    "best" INTEGER NOT NULL
-  )
- ''') ;
-    print(" onCreate =====================================") ;
-  }
-
-  readData(String name,int score) async {
-    Database? database = await db ;
-    List<Map> response = await  database!.rawQuery("Statement");
-    return response ;
-  }
-
-  insertData(String name,int score) async {
-    Database? database = await db ;
-    int  response = await  database!.rawInsert("Statement");
-    return response ;
-  }
-
-  // updateData(String sql) async {
-  //   Database? database = await db ;
-  //   int  response = await  database!.rawUpdate(sql);
-  //   return response ;
-  // }
-
-  // deleteData(String sql) async {
-  //   Database? database = await db ;
-  //   int  response = await  database!.rawDelete(sql);
-  //   return response ;
-  // }
-
-  // _onUpgrade(Database db , int oldVersion , int newVersion ) {
-  //   print("onUpgrade =====================================") ;
-  // }
+void delete(){
+  print("delete func is Activated");
 }

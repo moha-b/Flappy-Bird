@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_const_constructors_in_immutables
-
-import 'package:flappy_bird/model/user.dart';
 import 'package:flutter/material.dart';
+import '../Database/database.dart';
 import '../constant/constant.dart';
 
 class Score extends StatefulWidget {
@@ -13,7 +12,12 @@ class Score extends StatefulWidget {
 class _ScoreState extends State<Score> {
   @override
   Widget build(BuildContext context) {
-
+    // TODO: update the score
+    try {
+      TOP_SCORE = read(1);
+    }catch(error){
+      print('$error');
+    }
     return Container(color: Colors.brown,child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
