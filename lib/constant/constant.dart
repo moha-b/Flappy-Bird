@@ -1,6 +1,7 @@
 import 'package:flappy_bird/Ui/Bird.dart';
 import 'package:flappy_bird/Ui/HomePage.dart';
 import 'package:flappy_bird/Ui/barrier.dart';
+import 'package:flutter/material.dart';
 
 /// SCORE Variables calculated in function [startGame] in [HomePage]
 int SCORE = 0;
@@ -32,3 +33,7 @@ double moveToLeft = 0.05;
 /// Screen Boundary
 double screenEnd = -1.9;
 double screenStart = 3.5;
+
+///settings var
+bool theme=true;
+Color c=Colors.yellow;
