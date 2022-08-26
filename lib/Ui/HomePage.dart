@@ -117,12 +117,11 @@ class _HomePageState extends State<HomePage> {
     if (yAxis > 1.26 || yAxis < -1.1) {
       return true;
     }
-    // Barrier hit box
+    /// Barrier hitBox
     for (int i = 0; i < barrierX.length; i++) {
       if (barrierX[i] <= birdWidth &&
-          (barrierX[i] + barrierWidth) >= -birdWidth &&
-          (yAxis <= -1 + barrierHeight[i][0] ||
-              yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
+          (barrierX[i] + (barrierWidth)) >= birdWidth &&
+          (yAxis <= -1 + barrierHeight[i][0] || yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
         return true;
       }
     }

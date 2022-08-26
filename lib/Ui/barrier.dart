@@ -18,11 +18,11 @@ class Barrier extends StatelessWidget {
       alignment: Alignment((2 * direction + barrierWidth) /  (2 - barrierWidth),isTop ? 1.1 : -1.1),
       duration: Duration(milliseconds: 0),
       child: Container(
-        height: size.height * 3 / 4 * barrierWidth / 2,
+        height: (size.height) / (4 * barrierHeight) /2,
         width: size.width * barrierWidth / 2,
         decoration: BoxDecoration(
-          color: Colors.green[800],
-          border: Border.all(width: 10,color: Colors.lightGreen),
+          color: Colors.green,
+          border: Border.all(width: 10,color: Colors.green.shade900),
           borderRadius: BorderRadius.circular(16),
         ),
       ),

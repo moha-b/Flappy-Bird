@@ -8,8 +8,8 @@ int TOP_SCORE = 0;
 
 /// [Bird] Variables
 double yAxis = 0;
-double birdWidth = 0.37;
-double birdHeight = 0.45;
+double birdWidth = 0.183;
+double birdHeight = 0.183;
 
 /// Variables to calculate bird movements function [startGame] in [HomePage]
 double time = 0;
@@ -28,7 +28,6 @@ List<List<double>> barrierHeight = [
   [0.4, 0.6],
 ];
 double moveToLeft = 0.05;
-
 
 /// Screen Boundary
 double screenEnd = -1.9;
