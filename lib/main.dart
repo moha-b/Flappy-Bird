@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'Ui/HomePage.dart';
+import 'Ui/startscreen.dart';
 
 void main() async{
 
   await Hive.initFlutter();
   var box = Hive.openBox('user');
   runApp(MaterialApp(
-    home: MyApp(),
+    home: Startscreen(),
     debugShowCheckedModeBanner: false,
   ));
 }

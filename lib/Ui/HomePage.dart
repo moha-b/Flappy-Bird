@@ -15,6 +15,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
+  String settheme(){
+    if(theme ==true){
+      return"assets/pics/background-day.png";
+    }
+    else
+      return"assets/pics/background-night.png";
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/pics/background-day.png"),
+                      image: AssetImage(settheme()),
                       fit: BoxFit.cover)),
               child: Stack(
                 children: [
