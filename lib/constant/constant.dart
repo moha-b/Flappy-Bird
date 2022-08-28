@@ -2,6 +2,7 @@ import 'package:flappy_bird/Ui/Bird.dart';
 import 'package:flappy_bird/Ui/HomePage.dart';
 import 'package:flappy_bird/Ui/barrier.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 /// SCORE Variables calculated in function [startGame] in [HomePage]
 int SCORE = 0;
@@ -37,3 +38,10 @@ double screenStart = 3.5;
 ///settings var
 bool theme=true;
 Color c=Colors.yellow;
+
+
+/// Background Music
+final audioPlayer = AudioPlayer();
+bool isPlaying = false;
+Duration duration = Duration.zero;
+Duration position = Duration.zero;

@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flappy_bird/Ui/ShareApp.dart';
 import 'package:flutter/material.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 
 import '../constant/constant.dart';
 import 'HomePage.dart';
@@ -15,6 +16,53 @@ class Startscreen extends StatefulWidget {
 }
 
 class _StartscreenState extends State<Startscreen> {
+  @override
+  void initState(){
+    super.initState();
+
+    setAudio();
+
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.PLAYING;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onAudioPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition ;
+      });
+    });
+
+  }
+
+  Future setAudio() async{
+    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+
+    // String url ='https://www.youtube.com/watch?v=qCQOrHxktcA';
+    //audioPlayer.setUrl(url);
+    final  player = AudioCache(prefix: 'assets/audio/');
+    final url = await player.load('Bones.mp3');
+
+    audioPlayer.setUrl(url.path,isLocal: true);
+  }
+
+
+
+  @override
+
+  void dispose(){
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +83,18 @@ class _StartscreenState extends State<Startscreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton(onPressed: (){
+                ElevatedButton(onPressed: () async {
+                  if
+                  (isPlaying)
+                  {
+                    await audioPlayer.pause();
+                  }
+
+                  else
+                  {
+                    await audioPlayer.resume();
+                  }
+
                   setState(() {
                     Navigator.push(
                       context,
@@ -182,14 +241,33 @@ class MenuItems {
         break;
       case MenuItems.share:
       //Do something
+       // Navigator.push(
+         // context,
+          //MaterialPageRoute(builder: (context) =>   ShareApp()),
+        //);
         break;
       case MenuItems.aboutus:
-         AlertDialog(
-          title:     Text(" The game is a side-scroller where the player"
-              " \n controls a bird, attempting to fly between \n"
-              " columns of green pipes without hitting them")
-          ,
-        );
+        showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+          title: const Text("About Flappy Bird"),
+          content: const Text("The game is a side-scroller where the player"
+          " controls a bird, attempting to fly between "
+              " columns of green pipes without hitting them",),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: Container(
+                color: Colors.grey,
+                padding: const EdgeInsets.all(14),
+                child: const Text("okay"),
+              ),
+            ),
+          ],
+        ));
+
         break;
     }
   }
