@@ -8,6 +8,9 @@ import 'package:flappy_bird/Ui/cover.dart';
 import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'Settings.dart';
+import 'package:audioplayers/audioplayers.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -15,13 +18,65 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  String settheme(){
-    if(theme ==true){
-      return"assets/pics/background-day.png";
+
+
+  String settheme() {
+    if (theme == true) {
+      return "assets/pics/background-day.png";
     }
     else
-      return"assets/pics/background-night.png";
+      return "assets/pics/background-night.png";
   }
+
+
+  @override
+  void initState(){
+    super.initState();
+
+    setAudio();
+
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.PLAYING;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onAudioPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition ;
+      });
+    });
+
+  }
+
+  Future setAudio() async{
+    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+
+    // String url ='https://www.youtube.com/watch?v=qCQOrHxktcA';
+    //audioPlayer.setUrl(url);
+    final  player = AudioCache(prefix: 'assets/audio/');
+    final url = await player.load('Bones.mp3');
+
+    audioPlayer.setUrl(url.path,isLocal: true);
+  }
+
+
+
+  @override
+
+  void dispose(){
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,9 +102,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Barrier(barrierHeight[0][0], barrierWidth, barrierX[0], true),
-                  Barrier(barrierHeight[0][1], barrierWidth, barrierX[0], false),
+                  Barrier(
+                      barrierHeight[0][1], barrierWidth, barrierX[0], false),
                   Barrier(barrierHeight[1][0], barrierWidth, barrierX[1], true),
-                  Barrier(barrierHeight[1][1], barrierWidth, barrierX[1], false),
+                  Barrier(
+                      barrierHeight[1][1], barrierWidth, barrierX[1], false),
+
                 ],
               ),
             ),
@@ -65,6 +123,7 @@ class _HomePageState extends State<HomePage> {
 
   // Jump Function:
   void jump() {
+
     setState(() {
       time = 0;
       initialHeight = yAxis;
@@ -73,6 +132,7 @@ class _HomePageState extends State<HomePage> {
 
   //Start Game Function:
   void startGame() {
+
     gameHasStarted = true;
     Timer.periodic(Duration(milliseconds: 35), (timer) {
       height = gravity * time * time + velocity * time;
@@ -97,6 +157,7 @@ class _HomePageState extends State<HomePage> {
       if (birdIsDead()) {
         timer.cancel();
         _showDialog();
+
       }
       time += 0.032;
     });
@@ -124,11 +185,13 @@ class _HomePageState extends State<HomePage> {
     if (yAxis > 1.26 || yAxis < -1.1) {
       return true;
     }
+
     /// Barrier hitBox
     for (int i = 0; i < barrierX.length; i++) {
       if (barrierX[i] <= birdWidth &&
           (barrierX[i] + (barrierWidth)) >= birdWidth &&
-          (yAxis <= -1 + barrierHeight[i][0] || yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
+          (yAxis <= -1 + barrierHeight[i][0] ||
+              yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
         return true;
       }
     }
