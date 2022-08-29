@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print, prefer_const_constructors_in_immutables
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
+import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_score.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
@@ -8,7 +9,6 @@ import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'page_settings.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 
@@ -20,12 +20,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
 
-  String settheme() {
+  String setTheme() {
     if (theme == true) {
       return "assets/pics/background-day.png";
     }
-    else
+    else {
       return "assets/pics/background-night.png";
+    }
   }
 
 
@@ -66,16 +67,12 @@ class _HomePageState extends State<HomePage> {
     audioPlayer.setUrl(url.path,isLocal: true);
   }
 
-
-
   @override
 
   void dispose(){
     audioPlayer.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +85,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(settheme()),
+                      image: AssetImage(setTheme()),
                       fit: BoxFit.cover)),
               child: Stack(
                 children: [
@@ -244,7 +241,14 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Text("try again",
                   style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: () => resetGame(),
+              onPressed: (){
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StartScreen(),
+                  ),
+                );
+              },
             ),
           ],
         );

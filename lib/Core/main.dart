@@ -10,8 +10,7 @@ void main() async{
   await Hive.initFlutter();
   var box = Hive.openBox('user');
   runApp(MaterialApp(
-    home: Startscreen(),
-    debugShowCheckedModeBanner: false,
+    home: MyApp(), debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return HomePage();
+    return StartScreen();
   }
 }
 

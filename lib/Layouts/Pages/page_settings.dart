@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -59,6 +61,7 @@ class _SettingsState extends State<Settings> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
@@ -131,7 +134,7 @@ class _SettingsState extends State<Settings> {
         Row(
           children: [
             Text(
-              "Difficulity",
+              "Difficulty",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
             ButtonBar(
@@ -142,13 +145,13 @@ class _SettingsState extends State<Settings> {
                       velocity = 1.0;
                     });
                   },
-                  child: Text("EASY"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                       onPrimary: Colors.blueGrey,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: BorderSide(color: Colors.blueGrey))),
+                  child: Text("EASY"),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -156,13 +159,13 @@ class _SettingsState extends State<Settings> {
                       velocity = 2.5;
                     });
                   },
-                  child: Text("MEDIUM"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                       onPrimary: Colors.blueGrey,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: BorderSide(color: Colors.blueGrey))),
+                  child: Text("MEDIUM"),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -170,13 +173,13 @@ class _SettingsState extends State<Settings> {
                       velocity = 3.0;
                     });
                   },
-                  child: Text("HARD"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                       onPrimary: Colors.blueGrey,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: BorderSide(color: Colors.blueGrey))),
+                  child: Text("HARD"),
                 ),
               ],
             )

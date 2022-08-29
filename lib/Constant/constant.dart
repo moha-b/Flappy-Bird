@@ -45,3 +45,6 @@ final audioPlayer = AudioPlayer();
 bool isPlaying = false;
 Duration duration = Duration.zero;
 Duration position = Duration.zero;
+
+//////
+enum Navigation {home, sittings, leaderBord }

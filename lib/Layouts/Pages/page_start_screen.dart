@@ -1,274 +1,66 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
+import 'package:flappy_bird/Constant/constant.dart';
 import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import '../Widgets/widget_Button.dart';
 
-import '../../constant/constant.dart';
-import 'page_home.dart';
-import 'page_settings.dart';
-
-
-class Startscreen extends StatefulWidget {
-  const Startscreen({Key? key}) : super(key: key);
+class StartScreen extends StatefulWidget {
+  const StartScreen({Key? key}) : super(key: key);
 
   @override
-  State<Startscreen> createState() => _StartscreenState();
+  State<StartScreen> createState() => _StartScreenState();
 }
-
-class _StartscreenState extends State<Startscreen> {
-  @override
-  void initState(){
-    super.initState();
-
-    setAudio();
-
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState(() {
-        isPlaying = state == PlayerState.PLAYING;
-      });
-    });
-
-    audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
-    });
-
-    audioPlayer.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition ;
-      });
-    });
-
-  }
-
-  Future setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-
-    // String url ='https://www.youtube.com/watch?v=qCQOrHxktcA';
-    //audioPlayer.setUrl(url);
-    final  player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('Bones.mp3');
-
-    audioPlayer.setUrl(url.path,isLocal: true);
-  }
-
-
-
-  @override
-
-  void dispose(){
-    audioPlayer.dispose();
-    super.dispose();
-  }
-
+class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
-      body: Stack(
-        children: [
-
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/pics/Flappy-Bird-1.jpg"),
-                      fit: BoxFit.fill)),
-
-            ),
-          ),
-          ddb2(),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+      body: Container(
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/pics/background-day.png"),
+              fit: BoxFit.fill),
+        ),
+        child: Column(
+          children: [
+            Expanded(flex: 3,
+                child: SizedBox()),
+            Expanded(flex: 1,
+                child: Text("FlappyBird", style: TextStyle(fontSize: 70,fontFamily: "Magic4",color: Colors.white,),)),
+            Expanded(flex: 2, child: Bird(yAxis, birdWidth, birdHeight)),
+            Expanded(flex: 2, child: Column(
               children: [
-                ElevatedButton(onPressed: () async {
-                  if
-                  (isPlaying)
-                  {
-                    await audioPlayer.pause();
-                  }
-
-                  else
-                  {
-                    await audioPlayer.resume();
-                  }
-
-                  setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>  HomePage()),
-                    );
-                  });
-                }, child: Text("PLAY"),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.blueGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: BorderSide(color: Colors.blueGrey)
-                      )
-
-                  ),
-
+                Button(height: 60,width: 260,icon: Icon(Icons.play_arrow_rounded,size: 60,color: Colors.green,),type: Navigation.home.name,),
+                SizedBox(height: 16,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(width: 8,),
+                    Button(height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),type: Navigation.sittings.name,),
+                    Button(height: 60,width: 110,icon: Icon(Icons.leaderboard_rounded,size: 40,color: Colors.deepOrange,),type: Navigation.leaderBord.name,),
+                    SizedBox(width: 8,),
+                  ],
                 ),
               ],
-            ),
-          ),
-
-        ],
-
-      ),
-
-    );
-  }
-}
-
-
-class ddb2 extends StatefulWidget {
-  const ddb2({Key? key}) : super(key: key);
-
-  @override
-  State<ddb2> createState() => _ddb2State();
-}
-
-class _ddb2State extends State<ddb2> {
-  @override
-  Widget build(BuildContext context) {
-    return
-      DropdownButtonHideUnderline(
-      child: DropdownButton2(
-        //alignment: AlignmentDirectional.topStart,
-        customButton: const Icon(
-          Icons.list,
-          size: 46,
-          color: Colors.white,
-        ),
-        customItemsIndexes: const [3],
-        customItemsHeight: 8,
-        items: [
-          ...MenuItems.firstItems.map(
-                (item) =>
-                DropdownMenuItem<MenuItem>(
-                  value: item,
-                  child: MenuItems.buildItem(item),
+            ),),
+            Expanded(flex: 2, child: SizedBox()),
+            Expanded(flex: 1, child: InkWell(onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShareApp(),
                 ),
-          ),
-          const DropdownMenuItem<Divider>(enabled: false, child: Divider()),
-          ...MenuItems.secondItems.map(
-                (item) =>
-                DropdownMenuItem<MenuItem>(
-                  value: item,
-                  child: MenuItems.buildItem(item),
-                ),
-          ),
-        ],
-        onChanged: (value) {
-          MenuItems.onChanged(context, value as MenuItem);
-        },
-        itemHeight: 48,
-        itemPadding: const EdgeInsets.only(left: 16, right: 16),
-        dropdownWidth: 160,
-        dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-        dropdownDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color:Color.fromRGBO(78, 192, 202, 1),
-        ),
-        dropdownElevation: 8,
-        offset: const Offset(0, 8),
-      ),
-    );
-  }
-}
-
-
-
-class MenuItem {
-  final String text;
-  final IconData icon;
-
-  const MenuItem({
-    required this.text,
-    required this.icon,
-  });
-}
-
-class MenuItems {
-  static const List<MenuItem> firstItems = [play, share, settings];
-  static const List<MenuItem> secondItems = [aboutus];
-
-  static const play = MenuItem(text: 'PLAY', icon: Icons.start);
-  static const share = MenuItem(text: 'Share', icon: Icons.share);
-  static const settings = MenuItem(text: 'Settings', icon: Icons.settings);
-  static const aboutus = MenuItem(text: 'AboutUs', icon: Icons.info);
-
-  static Widget buildItem(MenuItem item) {
-    return Row(
-      children: [
-        Icon(
-            item.icon,
-            color: Colors.white,
-            size: 22
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          item.text,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ],
-    );
-  }
-
-  static onChanged(BuildContext context, MenuItem item) {
-    switch (item) {
-      case MenuItems.play:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  HomePage()),
-        );
-      //Do something
-        break;
-      case MenuItems.settings:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>   Settings()),
-        );
-        break;
-      case MenuItems.share:
-      //Do something
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>   ShareApp()),
-        );
-        break;
-      case MenuItems.aboutus:
-        showDialog(
-            context: context,
-            builder: (ctx) => AlertDialog(
-          title: const Text("About Flappy Bird"),
-          content: const Text("The game is a side-scroller where the player"
-          " controls a bird, attempting to fly between "
-              " columns of green pipes without hitting them",),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-              child: Container(
-                color: Colors.grey,
-                padding: const EdgeInsets.all(14),
-                child: const Text("okay"),
-              ),
-            ),
+              );
+            },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),))),
           ],
-        ));
-
-        break;
-    }
+        ),
+      ),
+    );
   }
 }
