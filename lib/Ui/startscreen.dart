@@ -241,10 +241,10 @@ class MenuItems {
         break;
       case MenuItems.share:
       //Do something
-       // Navigator.push(
-         // context,
-          //MaterialPageRoute(builder: (context) =>   ShareApp()),
-        //);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>   ShareApp()),
+        );
         break;
       case MenuItems.aboutus:
         showDialog(
