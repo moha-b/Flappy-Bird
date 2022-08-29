@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:flappy_bird/Ui/email.dart';
+import 'package:flappy_bird/Layouts/web/web_email.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'facebook.dart';
-import 'email.dart';
-import 'instagram.dart';
-import 'whatsapp.dart';
+import '../web/web_facebook.dart';
+import '../web/web_email.dart';
+import '../web/web_instagram.dart';
+import '../web/web_whatsapp.dart';
 
 final backgroundColors = [
   Color(0XFF8122BF),

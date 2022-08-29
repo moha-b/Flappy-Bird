@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print, prefer_const_constructors_in_immutables
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
-import 'package:flappy_bird/Ui/Bird.dart';
-import 'package:flappy_bird/Ui/Score.dart';
-import 'package:flappy_bird/Ui/barrier.dart';
-import 'package:flappy_bird/Ui/cover.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_score.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'Settings.dart';
+import 'page_settings.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 

@@ -1,11 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flappy_bird/Ui/ShareApp.dart';
+import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-import '../constant/constant.dart';
-import 'HomePage.dart';
-import 'Settings.dart';
+import '../../constant/constant.dart';
+import 'page_home.dart';
+import 'page_settings.dart';
 
 
 class Startscreen extends StatefulWidget {

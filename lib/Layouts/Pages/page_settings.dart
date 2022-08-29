@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'HomePage.dart';
-import '../constant/constant.dart';
+import 'page_home.dart';
+import '../../constant/constant.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);

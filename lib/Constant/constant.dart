@@ -1,6 +1,6 @@
-import 'package:flappy_bird/Ui/Bird.dart';
-import 'package:flappy_bird/Ui/HomePage.dart';
-import 'package:flappy_bird/Ui/barrier.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
+import 'package:flappy_bird/Layouts/Pages/page_home.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
