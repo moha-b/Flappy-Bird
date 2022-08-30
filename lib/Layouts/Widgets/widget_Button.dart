@@ -31,14 +31,14 @@ class Button extends StatelessWidget {
           child: icon
       ),
       onTap: (){
-          if(type == "home"){
+          if(type == Navigation.home.name){
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => HomePage(),
               ),
             );
-          }else if(type == "sittings"){
+          }else if(type == Navigation.settings.name){
             Navigator.push(
               context,
               MaterialPageRoute(

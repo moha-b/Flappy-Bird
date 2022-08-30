@@ -25,17 +25,17 @@ class _ScoreState extends State<Score> {
           // Score TEXT
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Score",style: TextStyle(color: Colors.white,fontSize: 30),),
+            Text("Score",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4"),),
             SizedBox(height: 10,),
-            Text(SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text(SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
           ],),
         // Best TEXT
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Best",style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text("Best",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
             SizedBox(height: 10,),
-            Text(TOP_SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30)),
+            Text(TOP_SCORE.toString(),style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
           ],),
       ],
     ),);

@@ -10,7 +10,7 @@ class Cover extends StatelessWidget {
     return Container(
       color: Colors.brown,
       alignment: Alignment.center,
-      child: Text("Powered by Fue",style: TextStyle(color: Colors.white,fontSize: 35),),
+      child: Text("Powered by Fue",style: TextStyle(color: Colors.white,fontSize: 45,fontFamily: "Magic4"),),
     );
   }
 }

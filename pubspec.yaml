@@ -81,9 +81,6 @@ flutter:
   assets:
     - assets/pics/
     - assets/audio/
-    - assets/pics/background-night.png
-
-
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -100,7 +97,7 @@ flutter:
   fonts:
     - family: Magic4
       fonts:
-          - asset: assets/fonts/DiloWorld-mLJLv.ttf
+        - asset: assets/fonts/DiloWorld-mLJLv.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

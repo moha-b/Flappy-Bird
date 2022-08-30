@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 import 'package:flappy_bird/Constant/constant.dart';
 import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_alert.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/widget_Button.dart';
@@ -42,7 +43,7 @@ class _StartScreenState extends State<StartScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(width: 8,),
-                    Button(height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),type: Navigation.sittings.name,),
+                    Button(height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),type: Navigation.settings.name,),
                     Button(height: 60,width: 110,icon: Icon(Icons.leaderboard_rounded,size: 40,color: Colors.deepOrange,),type: Navigation.leaderBord.name,),
                     SizedBox(width: 8,),
                   ],
@@ -57,7 +58,11 @@ class _StartScreenState extends State<StartScreen> {
                   builder: (context) => ShareApp(),
                 ),
               );
-            },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),))),
+            },child: GestureDetector(onTap: (){
+              showDialog(context: context, builder: (context) {
+                return Alert();
+              },);
+            },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),)))),
           ],
         ),
       ),

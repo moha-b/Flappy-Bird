@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, empty_statements, unused_field, avoid_print, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
@@ -72,6 +73,7 @@ class _HomePageState extends State<HomePage> {
   void dispose(){
     audioPlayer.dispose();
     super.dispose();
+
   }
 
   @override
@@ -95,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment(0, -0.3),
                     child: Text(
                       gameHasStarted ? '' : 'TAP TO START',
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(color: Colors.white, fontSize: 25,fontFamily: "Magic4"),
                     ),
                   ),
                   Barrier(barrierHeight[0][0], barrierWidth, barrierX[0], true),
@@ -219,11 +221,11 @@ class _HomePageState extends State<HomePage> {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           title: Text(
             "..Oops",
-            style: TextStyle(color: Colors.blue[900], fontSize: 25),
+            style: TextStyle(color: Colors.blue[900], fontSize: 35,fontFamily: "Magic4"),
           ),
           actionsPadding: EdgeInsets.only(right: 8, bottom: 8),
           content: Container(
-            child: Lottie.asset("assets/pics/among-us.json",
+            child: Lottie.asset("assets/pics/loss.json",
                 fit: BoxFit.cover),
           ),
           actions: [
@@ -233,22 +235,18 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Text("Exit",
                   style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: () => resetGame(),
+              onPressed: (){
+                resetGame();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),));
+              },
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.green,
               ),
               child: Text("try again",
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: (){
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => StartScreen(),
-                  ),
-                );
-              },
+                  style: TextStyle(color: Colors.white, fontSize: 17,fontFamily: "Magic4")),
+              onPressed: () => resetGame()
             ),
           ],
         );

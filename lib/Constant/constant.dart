@@ -1,3 +1,5 @@
+import 'package:flappy_bird/Layouts/Pages/page_settings.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_Button.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Pages/page_home.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
@@ -35,10 +37,9 @@ double moveToLeft = 0.05;
 double screenEnd = -1.9;
 double screenStart = 3.5;
 
-///settings var
-bool theme=true;
-Color c=Colors.yellow;
-
+///[Settings] Variables
+bool theme = true;
+Color c = Colors.yellow;
 
 /// Background Music
 final audioPlayer = AudioPlayer();
@@ -46,5 +47,24 @@ bool isPlaying = false;
 Duration duration = Duration.zero;
 Duration position = Duration.zero;
 
-//////
-enum Navigation {home, sittings, leaderBord }
+/// to decide which page that class [Button] will navigate
+enum Navigation{ home, settings, leaderBord }
+
+//
+String about = "The game is a side-scroller where the player"
+    " controls a bird, attempting to fly between "
+    " columns of green pipes without hitting them";
+
+late BoxDecoration gameBackground;
+int indicator = 0;
+String background(int index){
+  String image = "";
+  if(index == 0){
+    image = "assets/pics/background-day.png";
+  }else if(index == 1){
+    image = "assets/pics/background-night.png";
+  }else{
+    image = "assets/pics/background-after-night.png";
+  }
+  return image;
+}

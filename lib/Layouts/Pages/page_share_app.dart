@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, avoid_print
+
 import 'dart:async';
 
 import 'package:flappy_bird/Layouts/web/web_email.dart';
