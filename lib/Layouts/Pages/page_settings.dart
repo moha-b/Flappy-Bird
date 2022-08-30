@@ -1,10 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
-
-import 'package:audioplayers/audioplayers.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'page_home.dart';
-import '../../constant/constant.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -12,217 +9,95 @@ class Settings extends StatefulWidget {
   @override
   State<Settings> createState() => _SettingsState();
 }
-
 class _SettingsState extends State<Settings> {
-  final audioPlayer = AudioPlayer();
-  bool isPlaying = false;
-  Duration duration = Duration.zero;
-  Duration position = Duration.zero;
-
-  @override
-  void initState() {
-    super.initState();
-
-    setAudio();
-
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState(() {
-        isPlaying = state == PlayerState.PLAYING;
-      });
-    });
-
-    audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
-    });
-
-    audioPlayer.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition;
-      });
-    });
-  }
-
-  Future setAudio() async {
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-
-    // String url ='https://www.youtube.com/watch?v=qCQOrHxktcA';
-    //audioPlayer.setUrl(url);
-    final player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('Bones.mp3');
-
-    audioPlayer.setUrl(url.path, isLocal: true);
-  }
-
-  @override
-  void dispose() {
-    audioPlayer.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Container(
-          width: 250,
-          height: 200,
-          child: Row(
-            children: [
-              Text(
-                "THEME  ",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-              FlutterSwitch(
-                width: 125.0,
-                height: 55.0,
-                valueFontSize: 25.0,
-                toggleSize: 45.0,
-                value: theme,
-                borderRadius: 30.0,
-                padding: 8.0,
-                showOnOff: true,
-                onToggle: (val) {
-                  setState(() {
-                    theme = val;
-                  });
-                },
-              ),
-              Container(
-                width: 50,
-              ),
-            ],
-          ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/pics/background-day.png"),
+              fit: BoxFit.fill),
         ),
-        Row(
+        child: Column(
           children: [
-            Text(
-              "Characters",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            Expanded(flex: 1, child: Container(
+              margin: EdgeInsets.only(top: 20,left: 8),
+              child: Row(
+                children: [
+                  IconButton(onPressed: (){
+                    Navigator.pop(context);
+                  }, icon: Icon(Icons.arrow_back_ios_rounded,color: Colors.white,))
+                ],
+              ),
+            ),),
+            Expanded(
+              flex: 4,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.78,
+                height: MediaQuery.of(context).size.height * 0.3,
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black, width: 2),
+                    color: Colors.white54,boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.6),blurRadius: 1.0,offset: Offset(5,5))]),
+                child: Container(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Column(
+                    children: [
+                      Text("Setting",style: TextStyle(fontSize: 35,fontFamily: "Magic4")),
+                      SizedBox(height: 50,),
+                      Center(child:  Text("Characters",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image.asset("assets/pics/bluebird.png",width: 63,height: 60,),
+                          Image.asset("assets/pics/bluebird.png",width: 63,height: 60,),
+                          Image.asset("assets/pics/redbird.png",width: 63,height: 60,),
+                        ],
+                      ),
+                      Center(child: Text("Themes",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                      SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image.asset("assets/pics/background-day.png",width: 73,height: 70,),
+                          Image.asset("assets/pics/background-night.png",width: 73,height: 70,),
+                          Image.asset("assets/pics/background-after-night.png",width: 63,height: 66,),
+                        ],
+                      ),
+                      SizedBox(height: 20,),
+                      Center(child: Text("Music",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                      SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.music_note_rounded,size: 40,),
+                          Icon(Icons.music_off_rounded,size: 40),
+                        ],
+                      ),
+                      SizedBox(height: 40,),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.cyan.shade300,
+                          ),
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ShareApp(),),);
+                          }, child: Text("Apply",style: TextStyle(fontFamily: "Magic4",fontSize: 30),) ),
+
+                    ],
+                  ),
+                ),
+              ),
             ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  c = Colors.yellow;
-                });
-              },
-              icon: Image.asset("assets/pics/bird.png"),
-              iconSize: 100,
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  c = Colors.blue;
-                });
-              },
-              icon: Image.asset("assets/pics/m.png"),
-              iconSize: 100,
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  c = Colors.red;
-                });
-              },
-              icon: Image.asset("assets/pics/redbird.png"),
-              iconSize: 100,
-            )
+            Expanded(flex: 1, child: SizedBox(),)
           ],
         ),
-        Row(
-          children: [
-            Text(
-              "Difficulty",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-            ),
-            ButtonBar(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      velocity = 1.0;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.blueGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Colors.blueGrey))),
-                  child: Text("EASY"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      velocity = 2.5;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.blueGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Colors.blueGrey))),
-                  child: Text("MEDIUM"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      velocity = 3.0;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.blueGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Colors.blueGrey))),
-                  child: Text("HARD"),
-                ),
-              ],
-            )
-          ],
-        ),
-        SizedBox(height: 30),
-        Row(
-          children: [
-            Text(
-              "Sound ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-            ),
-            SizedBox(width: 20),
-            CircleAvatar(
-              radius: 25,
-              child: IconButton(
-                icon: Icon(isPlaying ? Icons.music_note : Icons.music_off),
-                iconSize: 40,
-                onPressed: () async {
-
-                  if (isPlaying) {
-                    await audioPlayer.pause();
-
-                  } else {
-                    await audioPlayer.resume();
-                  }
-                },
-              ),
-            ),
-            SizedBox(
-                width: 70),
-            ElevatedButton(
-                onPressed: ()  {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  HomePage()),
-                  );},
-                child: Text("  Apply  "))
-
-          ],
-        ),
-
-      ],
-    ));
+      ),
+    );
   }
 }

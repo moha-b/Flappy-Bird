@@ -92,15 +92,12 @@ class SocialShareButton extends StatefulWidget {
    final Color childrenColor;
    final String buttonLabel ;
 
-
-
    final _buttonkey = GlobalKey();
   double _buttonWidth = 0.0;
 
   @override
   State<SocialShareButton> createState() => _SocialShareButtonState();
 }
-
 class _SocialShareButtonState extends State<SocialShareButton> {
 
   final double height =100;

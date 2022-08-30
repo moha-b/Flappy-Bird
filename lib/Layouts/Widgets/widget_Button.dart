@@ -4,6 +4,7 @@ import 'package:flappy_bird/Constant/constant.dart';
 import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
 import 'package:flutter/material.dart';
 import '../Pages/page_home.dart';
+import '../Pages/page_leader_board.dart';
 import '../Pages/page_settings.dart';
 
 class Button extends StatelessWidget {
@@ -49,7 +50,7 @@ class Button extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ShareApp(),
+                builder: (context) => LeaderBoard(),
               ),
             );
           }
