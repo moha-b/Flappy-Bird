@@ -17,10 +17,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState(){
     super.initState();
+
     setAudio();
 
     audioPlayer.onPlayerStateChanged.listen((state) {
@@ -41,26 +41,79 @@ class _HomePageState extends State<HomePage> {
       });
     });
 
+//////////////////// audio2
+    setAudio2();
+    audio2.onAudioPositionChanged.listen((state) {
+      setState(() {
+        isPlaying2 = state == PlayerState.PLAYING;
+      });
+    });
+
+    audio2.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration2 = newDuration;
+      });
+    });
+
+    audio2.onAudioPositionChanged.listen((newPosition) {
+      setState(() {
+        position2 = newPosition ;
+      });
+    });
+
+    ///////////////
+    //////////////////// audio3
+    setAudio3();
+    audio3.onAudioPositionChanged.listen((state) {
+      setState(() {
+        isPlaying3 = state == PlayerState.PLAYING;
+      });
+    });
+
+    audio3.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration3 = newDuration;
+      });
+    });
+
+    audio3.onAudioPositionChanged.listen((newPosition) {
+      setState(() {
+        position3 = newPosition ;
+      });
+    });
   }
 
   Future setAudio() async{
     audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-
-    // String url ='https://www.youtube.com/watch?v=qCQOrHxktcA';
-    //audioPlayer.setUrl(url);
     final  player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('Bones.mp3');
+    final url = await player.load('backgroundAudio.mp3');
 
     audioPlayer.setUrl(url.path,isLocal: true);
   }
+  Future setAudio2() async{
+    audio2.setReleaseMode(ReleaseMode.RELEASE);
+    final  p2 = AudioCache(prefix: 'assets/audio/');
+    final url2 = await p2.load('gameover.wav');
+
+    audio2.setUrl(url2.path,isLocal: true);
+  }
+
+  Future setAudio3() async{
+    audio3.setReleaseMode(ReleaseMode.RELEASE);
+    final  p3 = AudioCache(prefix: 'assets/audio/');
+    final url3 = await p3.load('point.mp3');
+
+    audio3.setUrl(url3.path,isLocal: true);
+  }
 
   @override
+
   void dispose(){
     audioPlayer.dispose();
+    audio2.dispose();
+    audio3.dispose();
     super.dispose();
-
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +173,8 @@ class _HomePageState extends State<HomePage> {
       time = 0;
       initialHeight = yAxis;
     });
+
+
   }
 
   //Start Game Function:
@@ -130,6 +185,7 @@ class _HomePageState extends State<HomePage> {
       height = gravity * time * time + velocity * time;
       setState(() {
         yAxis = initialHeight - height;
+
       });
       /* <  Barriers Movements  > */
       setState(() {
@@ -147,8 +203,10 @@ class _HomePageState extends State<HomePage> {
         }
       });
       if (birdIsDead()) {
+
         timer.cancel();
         _showDialog();
+
       }
       time += 0.032;
     });
@@ -160,6 +218,10 @@ class _HomePageState extends State<HomePage> {
       } else {
         setState(() {
           if (SCORE == TOP_SCORE) {
+            if (isPlaying3 == false)
+            {
+              audio3.resume();
+            }
             TOP_SCORE++;
             // TODO: add the Top score to Database
             write(1, TOP_SCORE);
@@ -175,6 +237,11 @@ class _HomePageState extends State<HomePage> {
   bool birdIsDead() {
     // Screen
     if (yAxis > 1.26 || yAxis < -1.1) {
+   /// Game Over Audio Plays in case bird dies
+      if (isPlaying2 == false)
+      {
+        audio2.resume();
+      }
       return true;
     }
 
@@ -184,6 +251,10 @@ class _HomePageState extends State<HomePage> {
           (barrierX[i] + (barrierWidth)) >= birdWidth &&
           (yAxis <= -1 + barrierHeight[i][0] ||
               yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
+        if (isPlaying2== false)
+        {
+          audio2.resume();
+        }
         return true;
       }
     }
@@ -205,6 +276,7 @@ class _HomePageState extends State<HomePage> {
 
   // TODO: Alert Dialog with 2 options (try again, exit)
   void _showDialog() {
+
     showDialog(
       context: context,
       builder: (context) {
@@ -218,8 +290,10 @@ class _HomePageState extends State<HomePage> {
           ),
           actionsPadding: EdgeInsets.only(right: 8, bottom: 8),
           content: Container(
+
             child: Lottie.asset("assets/pics/loss.json",
                 fit: BoxFit.cover),
+
           ),
           actions: [
             ElevatedButton(
@@ -228,7 +302,10 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Text("Exit",
                   style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: (){
+              onPressed: () async {
+        if (isPlaying == true)  {
+        await audioPlayer.pause();
+        }
                 resetGame();
                 Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),));
               },
