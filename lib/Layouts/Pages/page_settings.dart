@@ -32,10 +32,10 @@ class _SettingsState extends State<Settings> {
               ),
             ),),
             Expanded(
-              flex: 4,
+              flex: 6,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.78,
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.4,
                 margin: EdgeInsets.symmetric(horizontal: 16),
                 padding: EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
@@ -47,9 +47,7 @@ class _SettingsState extends State<Settings> {
                   child: Column(
                     children: [
                       Text("Setting",style: TextStyle(fontSize: 35,fontFamily: "Magic4")),
-                      SizedBox(height: 40,),
-                      Center(child:  Text("Characters",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-                      SizedBox(height: 10,),
+                      Center(child: Container(margin: EdgeInsets.only(bottom: 10,top: 30),child: Text("Characters",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -58,8 +56,7 @@ class _SettingsState extends State<Settings> {
                           GestureDetector(onTap: (){bird = "assets/pics/greenBird.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/greenBird.png",fit: BoxFit.cover,))),
                         ],
                       ),
-                      Center(child: Text("Themes",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-                      SizedBox(height: 20,),
+                      Center(child: Container(margin: EdgeInsets.symmetric(vertical: 10),child: Text("Themes",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -83,9 +80,7 @@ class _SettingsState extends State<Settings> {
                           },child: Image.asset("assets/pics/2.png",width: 63,height: 66,)),
                         ],
                       ),
-                      SizedBox(height: 20,),
-                      Center(child: Text("Music",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-                      SizedBox(height: 20,),
+                      Center(child: Container(margin: EdgeInsets.only(bottom: 10,top: 20),child: Text("Music",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -97,7 +92,30 @@ class _SettingsState extends State<Settings> {
                           },child: Icon(Icons.music_off_rounded,size: 40)),
                         ],
                       ),
-                      SizedBox(height: 40,),
+                      Center(child: Container(margin: EdgeInsets.only(top: 20,bottom: 10),child: Text("Difficulty",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(onPressed: (){
+                            // TODO: Edit here
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green.shade300,
+                          ), child: Text("Easy",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                          ElevatedButton(onPressed: (){
+                            // TODO: Edit here
+                          },style: ElevatedButton.styleFrom(
+                          primary: Colors.yellow.shade700,
+                          ), child: Text("Medium",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                          ElevatedButton(onPressed: (){
+                            // TODO: Edit here
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red.shade300,
+                          ), child: Text("Hard",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+                        ],
+                      ),
+                      SizedBox(height: 20,),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Colors.cyan.shade300,
