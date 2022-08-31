@@ -25,6 +25,20 @@ int read(int id){
   return myBox.get(id);
 }
 
+void writeBackground(int id, String image){
+  myBox.put(0, image);
+  print("WriteBackground func is Activated");
+}
+
+String readBackground(int id){
+  print("Read func is Activated");
+  if(myBox.get(id) == null){
+    print("0 has been returned");
+    return "0 has been returned";
+  }
+  return myBox.get(id);
+}
+
 void delete(){
   print("delete func is Activated");
 }

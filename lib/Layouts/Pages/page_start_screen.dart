@@ -4,6 +4,7 @@ import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_alert.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
+import '../../Database/database.dart';
 import '../Widgets/widget_Button.dart';
 
 class StartScreen extends StatefulWidget {
@@ -23,11 +24,7 @@ class _StartScreenState extends State<StartScreen> {
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/pics/background-day.png"),
-              fit: BoxFit.fill),
-        ),
+        decoration: background(im),
         child: Column(
           children: [
             Expanded(flex: 3,

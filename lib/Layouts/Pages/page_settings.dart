@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
+import 'package:flappy_bird/Database/database.dart';
+import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flutter/material.dart';
+import '../../Constant/constant.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -16,11 +18,7 @@ class _SettingsState extends State<Settings> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/pics/background-day.png"),
-              fit: BoxFit.fill),
-        ),
+        decoration: background(im),
         child: Column(
           children: [
             Expanded(flex: 1, child: Container(
@@ -49,15 +47,15 @@ class _SettingsState extends State<Settings> {
                   child: Column(
                     children: [
                       Text("Setting",style: TextStyle(fontSize: 35,fontFamily: "Magic4")),
-                      SizedBox(height: 50,),
+                      SizedBox(height: 40,),
                       Center(child:  Text("Characters",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
                       SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.asset("assets/pics/bluebird.png",width: 63,height: 60,),
-                          Image.asset("assets/pics/bluebird.png",width: 63,height: 60,),
-                          Image.asset("assets/pics/redbird.png",width: 63,height: 60,),
+                          GestureDetector(onTap: (){bird = "assets/pics/bird.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/bird.png",fit: BoxFit.cover,))),
+                          GestureDetector(onTap: (){bird = "assets/pics/blue.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/blue.png",fit: BoxFit.cover,))),
+                          GestureDetector(onTap: (){bird = "assets/pics/greenBird.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/greenBird.png",fit: BoxFit.cover,))),
                         ],
                       ),
                       Center(child: Text("Themes",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
@@ -65,9 +63,24 @@ class _SettingsState extends State<Settings> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.asset("assets/pics/background-day.png",width: 73,height: 70,),
-                          Image.asset("assets/pics/background-night.png",width: 73,height: 70,),
-                          Image.asset("assets/pics/background-after-night.png",width: 63,height: 66,),
+                          GestureDetector(onTap: (){setState(() {
+                            setState(() {
+                              im = "0";
+                              background(im);
+                            });
+                          });},child: Image.asset("assets/pics/0.png",width: 73,height: 70,)),
+                          GestureDetector(onTap: (){setState(() {
+                            setState(() {
+                              im = "1";
+                              background(im);
+                            });
+                          });},child: Image.asset("assets/pics/1.png",width: 73,height: 70,)),
+                          GestureDetector(onTap: (){
+                            setState(() {
+                              im = "2";
+                              background(im);
+                            });
+                          },child: Image.asset("assets/pics/2.png",width: 63,height: 66,)),
                         ],
                       ),
                       SizedBox(height: 20,),
@@ -76,8 +89,12 @@ class _SettingsState extends State<Settings> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.music_note_rounded,size: 40,),
-                          Icon(Icons.music_off_rounded,size: 40),
+                          GestureDetector(onTap: (){
+                            //TODO: play Music
+                          },child: Icon(Icons.music_note_rounded,size: 40,)),
+                          GestureDetector(onTap: (){
+                            //TODO: play Music
+                          },child: Icon(Icons.music_off_rounded,size: 40)),
                         ],
                       ),
                       SizedBox(height: 40,),
@@ -86,9 +103,9 @@ class _SettingsState extends State<Settings> {
                             primary: Colors.cyan.shade300,
                           ),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ShareApp(),),);
+                            writeBackground(0, im);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),),);
                           }, child: Text("Apply",style: TextStyle(fontFamily: "Magic4",fontSize: 30),) ),
-
                     ],
                   ),
                 ),

@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_Button.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
@@ -54,17 +57,12 @@ enum Navigation{ home, settings, leaderBord }
 String about = "The game is a side-scroller where the player"
     " controls a bird, attempting to fly between "
     " columns of green pipes without hitting them";
-
-late BoxDecoration gameBackground;
-int indicator = 0;
-String background(int index){
-  String image = "";
-  if(index == 0){
-    image = "assets/pics/background-day.png";
-  }else if(index == 1){
-    image = "assets/pics/background-night.png";
-  }else{
-    image = "assets/pics/background-after-night.png";
-  }
-  return image;
+String im = "0";
+BoxDecoration background(String y){
+  return BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/pics/$y.png"),
+        fit: BoxFit.fill),
+  );
 }
+String bird = "assets/pics/bird.png";

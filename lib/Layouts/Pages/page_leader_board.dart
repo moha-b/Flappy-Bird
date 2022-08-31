@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, avoid_print
 
 import 'package:flappy_bird/Constant/constant.dart';
 import 'package:flappy_bird/Layouts/Pages/page_share_app.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../Database/database.dart';
 
 class LeaderBoard extends StatefulWidget {
   const LeaderBoard({Key? key}) : super(key: key);
@@ -15,15 +17,16 @@ class LeaderBoard extends StatefulWidget {
 class _LeaderBoardState extends State<LeaderBoard> {
   @override
   Widget build(BuildContext context) {
+    try {
+      TOP_SCORE = read(1);
+    }catch(error){
+      print('$error');
+    }
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/pics/background-day.png"),
-              fit: BoxFit.fill),
-        ),
+        decoration: background(im),
         child: Column(
           children: [
             Expanded(flex: 1, child: Container(

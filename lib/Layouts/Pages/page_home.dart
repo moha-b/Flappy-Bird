@@ -1,17 +1,15 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers
 
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_score.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
-import 'package:flappy_bird/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:audioplayers/audioplayers.dart';
-
+import '../../Constant/constant.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -20,21 +18,9 @@ class HomePage extends StatefulWidget {
 }
 class _HomePageState extends State<HomePage> {
 
-
-  String setTheme() {
-    if (theme == true) {
-      return "assets/pics/background-day.png";
-    }
-    else {
-      return "assets/pics/background-night.png";
-    }
-  }
-
-
   @override
   void initState(){
     super.initState();
-
     setAudio();
 
     audioPlayer.onPlayerStateChanged.listen((state) {
@@ -69,12 +55,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-
   void dispose(){
     audioPlayer.dispose();
     super.dispose();
 
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +71,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 3,
             child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(setTheme()),
-                      fit: BoxFit.cover)),
+              decoration: background(im),
               child: Stack(
                 children: [
                   Bird(yAxis, birdWidth, birdHeight),
@@ -104,16 +87,26 @@ class _HomePageState extends State<HomePage> {
                   Barrier(
                       barrierHeight[0][1], barrierWidth, barrierX[0], false),
                   Barrier(barrierHeight[1][0], barrierWidth, barrierX[1], true),
-                  Barrier(
-                      barrierHeight[1][1], barrierWidth, barrierX[1], false),
-
+                  Barrier(barrierHeight[1][1], barrierWidth, barrierX[1], false),
+                  Positioned(
+                    bottom: 1,
+                    right: 1,
+                    left: 1,
+                    child: Container(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("Score : $SCORE",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4"),), // Best TEXT
+                        Text("Best : $TOP_SCORE",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
+                      ],
+                    ),),
+                  ),
                 ],
               ),
             ),
           ),
           Expanded(
             flex: 1,
-            child: gameHasStarted ? Score() : Cover(),
+            child: Cover(),
           ),
         ]),
       ),
@@ -156,7 +149,6 @@ class _HomePageState extends State<HomePage> {
       if (birdIsDead()) {
         timer.cancel();
         _showDialog();
-
       }
       time += 0.032;
     });
@@ -173,6 +165,7 @@ class _HomePageState extends State<HomePage> {
             write(1, TOP_SCORE);
           }
           SCORE++;
+          // print("Score : $SCORE, Best: $TOP_SCORE");
         });
       }
     });
