@@ -4,6 +4,7 @@ import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flutter/material.dart';
 import '../../Constant/constant.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -12,6 +13,48 @@ class Settings extends StatefulWidget {
   State<Settings> createState() => _SettingsState();
 }
 class _SettingsState extends State<Settings> {
+
+  @override
+  void initState(){
+    super.initState();
+
+    setAudio();
+
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.PLAYING;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onAudioPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition ;
+      });
+    });
+
+  }
+
+  Future setAudio() async{
+    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    final  player = AudioCache(prefix: 'assets/audio/');
+    final url = await player.load('backgroundAudio.mp3');
+
+    audioPlayer.setUrl(url.path,isLocal: true);
+  }
+
+
+  @override
+
+  void dispose(){
+    audioPlayer.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,11 +127,21 @@ class _SettingsState extends State<Settings> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          GestureDetector(onTap: (){
-                            //TODO: play Music
+                          GestureDetector(onTap: () async
+                              {
+                              //TODO: play Music
+                              if (isPlaying == false)
+                              {
+                              await audioPlayer.resume();
+                              }
+
                           },child: Icon(Icons.music_note_rounded,size: 40,)),
-                          GestureDetector(onTap: (){
+                          GestureDetector(onTap: () async
+                          {
                             //TODO: play Music
+                            if (isPlaying == true)  {
+                              await audioPlayer.pause();
+                            }
                           },child: Icon(Icons.music_off_rounded,size: 40)),
                         ],
                       ),
@@ -120,7 +173,10 @@ class _SettingsState extends State<Settings> {
                           style: ElevatedButton.styleFrom(
                             primary: Colors.cyan.shade300,
                           ),
-                          onPressed: (){
+                          onPressed: () async {
+                            if (isPlaying == true)  {
+                              await audioPlayer.pause();
+                            }
                             writeBackground(0, im);
                             Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),),);
                           }, child: Text("Apply",style: TextStyle(fontFamily: "Magic4",fontSize: 30),) ),
