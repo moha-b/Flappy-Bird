@@ -14,47 +14,7 @@ class Settings extends StatefulWidget {
 }
 class _SettingsState extends State<Settings> {
 
-  @override
-  void initState(){
-    super.initState();
 
-    setAudio();
-
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState(() {
-        isPlaying = state == PlayerState.PLAYING;
-      });
-    });
-
-    audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
-    });
-
-    audioPlayer.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition ;
-      });
-    });
-
-  }
-
-  Future setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-    final  player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('backgroundAudio.mp3');
-
-    audioPlayer.setUrl(url.path,isLocal: true);
-  }
-
-
-  @override
-
-  void dispose(){
-    audioPlayer.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +28,7 @@ class _SettingsState extends State<Settings> {
               margin: EdgeInsets.only(top: 20,left: 8),
               child: Row(
                 children: [
-                  IconButton(onPressed: (){
-                    Navigator.pop(context);
-                  }, icon: Icon(Icons.arrow_back_ios_rounded,color: Colors.white,))
+
                 ],
               ),
             ),),
@@ -130,6 +88,7 @@ class _SettingsState extends State<Settings> {
                           GestureDetector(onTap: () async
                               {
                               //TODO: play Music
+                                isPlaying = false;
                               if (isPlaying == false)
                               {
                               await audioPlayer.resume();
@@ -137,7 +96,7 @@ class _SettingsState extends State<Settings> {
 
                           },child: Icon(Icons.music_note_rounded,size: 40,)),
                           GestureDetector(onTap: () async
-                          {
+                          {  isPlaying = true;
                             //TODO: play Music
                             if (isPlaying == true)  {
                               await audioPlayer.pause();
@@ -173,10 +132,7 @@ class _SettingsState extends State<Settings> {
                           style: ElevatedButton.styleFrom(
                             primary: Colors.cyan.shade300,
                           ),
-                          onPressed: () async {
-                            if (isPlaying == true)  {
-                              await audioPlayer.pause();
-                            }
+                          onPressed: () {
                             writeBackground(0, im);
                             Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),),);
                           }, child: Text("Apply",style: TextStyle(fontFamily: "Magic4",fontSize: 30),) ),
