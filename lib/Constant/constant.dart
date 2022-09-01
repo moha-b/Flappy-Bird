@@ -51,20 +51,6 @@ Duration duration = Duration.zero;
 Duration position = Duration.zero;
 
 
-///////////////////  GameOver audio
-final audio2 = AudioPlayer();
-bool isPlaying2 = false;
-Duration duration2 = Duration.zero;
-Duration position2 = Duration.zero;
-
-
-
-////////////////////  Point audio
-final audio3 = AudioPlayer();
-bool isPlaying3 = false;
-Duration duration3 = Duration.zero;
-Duration position3 = Duration.zero;
-
 /// to decide which page that class [Button] will navigate
 enum Navigation{ home, settings, leaderBord }
 
