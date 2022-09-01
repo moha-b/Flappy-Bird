@@ -41,46 +41,6 @@ class _HomePageState extends State<HomePage> {
       });
     });
 
-//////////////////// audio2
-    setAudio2();
-    audio2.onAudioPositionChanged.listen((state) {
-      setState(() {
-        isPlaying2 = state == PlayerState.PLAYING;
-      });
-    });
-
-    audio2.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration2 = newDuration;
-      });
-    });
-
-    audio2.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position2 = newPosition ;
-      });
-    });
-
-    ///////////////
-    //////////////////// audio3
-    setAudio3();
-    audio3.onAudioPositionChanged.listen((state) {
-      setState(() {
-        isPlaying3 = state == PlayerState.PLAYING;
-      });
-    });
-
-    audio3.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration3 = newDuration;
-      });
-    });
-
-    audio3.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position3 = newPosition ;
-      });
-    });
   }
 
   Future setAudio() async{
@@ -90,28 +50,11 @@ class _HomePageState extends State<HomePage> {
 
     audioPlayer.setUrl(url.path,isLocal: true);
   }
-  Future setAudio2() async{
-    audio2.setReleaseMode(ReleaseMode.RELEASE);
-    final  p2 = AudioCache(prefix: 'assets/audio/');
-    final url2 = await p2.load('gameover.wav');
-
-    audio2.setUrl(url2.path,isLocal: true);
-  }
-
-  Future setAudio3() async{
-    audio3.setReleaseMode(ReleaseMode.RELEASE);
-    final  p3 = AudioCache(prefix: 'assets/audio/');
-    final url3 = await p3.load('point.mp3');
-
-    audio3.setUrl(url3.path,isLocal: true);
-  }
 
   @override
 
   void dispose(){
     audioPlayer.dispose();
-    audio2.dispose();
-    audio3.dispose();
     super.dispose();
   }
 
@@ -218,10 +161,6 @@ class _HomePageState extends State<HomePage> {
       } else {
         setState(() {
           if (SCORE == TOP_SCORE) {
-            if (isPlaying3 == false)
-            {
-              audio3.resume();
-            }
             TOP_SCORE++;
             // TODO: add the Top score to Database
             write(1, TOP_SCORE);
@@ -237,11 +176,6 @@ class _HomePageState extends State<HomePage> {
   bool birdIsDead() {
     // Screen
     if (yAxis > 1.26 || yAxis < -1.1) {
-   /// Game Over Audio Plays in case bird dies
-      if (isPlaying2 == false)
-      {
-        audio2.resume();
-      }
       return true;
     }
 
@@ -251,10 +185,7 @@ class _HomePageState extends State<HomePage> {
           (barrierX[i] + (barrierWidth)) >= birdWidth &&
           (yAxis <= -1 + barrierHeight[i][0] ||
               yAxis + birdHeight >= 1 - barrierHeight[i][1])) {
-        if (isPlaying2== false)
-        {
-          audio2.resume();
-        }
+
         return true;
       }
     }
