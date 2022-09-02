@@ -109,22 +109,23 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(onPressed: (){
-                            // TODO: Edit here
+                            velocity=2.5;
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.green.shade300,
                           ), child: Text("Easy",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
                           ElevatedButton(onPressed: (){
-                            // TODO: Edit here
+                            velocity=3.0;
                           },style: ElevatedButton.styleFrom(
                           primary: Colors.yellow.shade700,
                           ), child: Text("Medium",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
                           ElevatedButton(onPressed: (){
-                            // TODO: Edit here
+                            velocity=3.5;
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red.shade300,
                           ), child: Text("Hard",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
+
                         ],
                       ),
                       SizedBox(height: 20,),
