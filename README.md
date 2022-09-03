@@ -32,8 +32,6 @@ if you clone it just run
 $ flutter pub get
 ```
 
-https://user-images.githubusercontent.com/73842931/186851342-d632bc4a-717c-4757-a028-548b16f97382.mp4
-
 ----
 
 This game is the culmination of the University-sponsored [Next Academy's](https://next-eg.com/) flutter programming instruction.
