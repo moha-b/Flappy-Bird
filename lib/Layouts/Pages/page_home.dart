@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, avoid_print
 
 import 'dart:async';
 import 'package:flappy_bird/Database/database.dart';
@@ -8,7 +8,6 @@ import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:audioplayers/audioplayers.dart';
 import '../../Constant/constant.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,49 +16,14 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState(){
-    super.initState();
-
-    setAudio();
-
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState(() {
-        isPlaying = state == PlayerState.PLAYING;
-      });
-    });
-
-    audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
-    });
-
-    audioPlayer.onAudioPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition ;
-      });
-    });
-
-  }
-
-  Future setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-    final  player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('backgroundAudio.mp3');
-
-    audioPlayer.setUrl(url.path,isLocal: true);
-  }
-
-  @override
-
-  void dispose(){
-    audioPlayer.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
+    try {
+      TOP_SCORE = read(1);
+    }catch(error){
+      print('$error');
+    }
     return GestureDetector(
       onTap: gameHasStarted ? jump : startGame,
       child: Scaffold(
@@ -85,9 +49,7 @@ class _HomePageState extends State<HomePage> {
                   Barrier(barrierHeight[1][0], barrierWidth, barrierX[1], true),
                   Barrier(barrierHeight[1][1], barrierWidth, barrierX[1], false),
                   Positioned(
-                    bottom: 1,
-                    right: 1,
-                    left: 1,
+                    bottom: 1, right: 1, left: 1,
                     child: Container(child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -116,8 +78,6 @@ class _HomePageState extends State<HomePage> {
       time = 0;
       initialHeight = yAxis;
     });
-
-
   }
 
   //Start Game Function:
@@ -135,21 +95,20 @@ class _HomePageState extends State<HomePage> {
         if (barrierX[0] < screenEnd) {
           barrierX[0] += screenStart;
         } else {
-          barrierX[0] -= moveToLeft;
+          barrierX[0] -= barrierMovement;
         }
       });
       setState(() {
         if (barrierX[1] < screenEnd) {
           barrierX[1] += screenStart;
         } else {
-          barrierX[1] -= moveToLeft;
+          barrierX[1] -= barrierMovement;
         }
       });
       if (birdIsDead()) {
 
         timer.cancel();
         _showDialog();
-
       }
       time += 0.032;
     });
@@ -233,10 +192,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Text("Exit",
                   style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: () async {
-        if (isPlaying == true)  {
-        await audioPlayer.pause();
-        }
+              onPressed: () {
                 resetGame();
                 Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),));
               },

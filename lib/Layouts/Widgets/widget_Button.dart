@@ -32,14 +32,7 @@ class Button extends StatelessWidget {
           alignment: Alignment.center,
           child: icon
       ),
-      onTap: ()async{
-        if (isPlaying == false)
-        {
-          await audioPlayer.resume();
-        }
-       else{
-          await audioPlayer.pause();
-        }
+      onTap: (){
           if(type == Navigation.home.name){
             Navigator.push(
               context,
@@ -61,8 +54,6 @@ class Button extends StatelessWidget {
                 builder: (context) => RateUs(),
               ),
             );
-
-
           }
       },
     );

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../Constant/constant.dart';
-import '../Layouts/Pages/page_home.dart';
 import '../Layouts/Pages/page_start_screen.dart';
 
 void main() async{

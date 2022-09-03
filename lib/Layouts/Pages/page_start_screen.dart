@@ -39,10 +39,10 @@ class _StartScreenState extends State<StartScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(width: 8,),
+                    SizedBox(width: 11,),
                     Button(height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),type: Navigation.settings.name,),
-                    Button(height: 60,width: 110,icon: Icon(Icons.star,size: 40,color: Colors.deepOrange,),type: Navigation.leaderBord.name,),
-                    SizedBox(width: 8,),
+                    Button(height: 60,width: 110,icon: Icon(Icons.star,size: 40,color: Colors.deepOrange,),type: Navigation.rateUs.name,),
+                    SizedBox(width: 11,),
                   ],
                 ),
               ],

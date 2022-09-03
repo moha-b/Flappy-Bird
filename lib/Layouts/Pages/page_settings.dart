@@ -54,7 +54,7 @@ class _SettingsState extends State<Settings> {
                         children: [
                           GestureDetector(onTap: (){bird = "assets/pics/bird.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/bird.png",fit: BoxFit.cover,))),
                           GestureDetector(onTap: (){bird = "assets/pics/blue.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/blue.png",fit: BoxFit.cover,))),
-                          GestureDetector(onTap: (){bird = "assets/pics/greenBird.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/greenBird.png",fit: BoxFit.cover,))),
+                          GestureDetector(onTap: (){bird = "assets/pics/green.png";},child: Container(width: 75,height: 75,child: Image.asset("assets/pics/green.png",fit: BoxFit.cover,))),
                         ],
                       ),
                       Center(child: Container(margin: EdgeInsets.symmetric(vertical: 10),child: Text("Themes",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
@@ -109,23 +109,22 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(onPressed: (){
-                            velocity=2.5;
+                            barrierMovement = 0.05 ;
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.green.shade300,
                           ), child: Text("Easy",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
                           ElevatedButton(onPressed: (){
-                            velocity=3.0;
+                            barrierMovement = 0.08 ;
                           },style: ElevatedButton.styleFrom(
                           primary: Colors.yellow.shade700,
                           ), child: Text("Medium",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
                           ElevatedButton(onPressed: (){
-                            velocity=3.5;
+                            barrierMovement = 0.1 ;
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red.shade300,
                           ), child: Text("Hard",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-
                         ],
                       ),
                       SizedBox(height: 20,),
@@ -134,7 +133,7 @@ class _SettingsState extends State<Settings> {
                             primary: Colors.cyan.shade300,
                           ),
                           onPressed: () {
-                            writeBackground(0, im);
+                            writeBackground(im);
                             Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),),);
                           }, child: Text("Apply",style: TextStyle(fontFamily: "Magic4",fontSize: 30),) ),
                     ],

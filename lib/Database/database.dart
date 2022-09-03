@@ -25,7 +25,7 @@ int read(int id){
   return myBox.get(id);
 }
 
-void writeBackground(int id, String image){
+void writeBackground(String image){
   myBox.put(0, image);
   print("WriteBackground func is Activated");
 }

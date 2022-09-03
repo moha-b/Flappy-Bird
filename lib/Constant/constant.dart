@@ -34,7 +34,7 @@ List<List<double>> barrierHeight = [
   [0.6, 0.4],
   [0.4, 0.6],
 ];
-double moveToLeft = 0.05;
+double barrierMovement = 0.05;
 
 /// Screen Boundary
 double screenEnd = -1.9;
@@ -52,7 +52,7 @@ Duration position = Duration.zero;
 
 
 /// to decide which page that class [Button] will navigate
-enum Navigation{ home, settings, leaderBord }
+enum Navigation{ home, settings, rateUs }
 
 //
 String about = "The game is a side-scroller where the player"

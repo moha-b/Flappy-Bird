@@ -37,10 +37,7 @@ dependencies:
   audioplayers: ^0.20.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-
   lottie: ^1.4.1
-  dropdown_button2: ^1.7.2
-  flutter_switch: ^0.3.2
   http: ^0.13.3
   path_provider: ^2.0.3
   url_launcher: ^6.1.5
@@ -48,6 +45,8 @@ dependencies:
   smooth_star_rating: ^1.0.4+2
   rating_dialog:
   smooth_star_rating_null_safety: ^1.0.4+2
+  share_plus: ^4.0.10+1
+  share: ^2.0.4
 
 dev_dependencies:
   flutter_test:
