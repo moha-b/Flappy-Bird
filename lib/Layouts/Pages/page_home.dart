@@ -106,7 +106,6 @@ class _HomePageState extends State<HomePage> {
         }
       });
       if (birdIsDead()) {
-
         timer.cancel();
         _showDialog();
       }
@@ -169,6 +168,7 @@ class _HomePageState extends State<HomePage> {
 
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
