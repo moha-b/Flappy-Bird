@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import '../../Constant/constant.dart';
 
-class Alert extends StatelessWidget {
-  Alert({Key? key}) : super(key: key);
+class About extends StatelessWidget {
+  About({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

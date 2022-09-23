@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 import 'package:flappy_bird/Constant/constant.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_alert.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_about_.alert.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/widget_Button.dart';
-import '../Pages/page_RateUs.dart';
-import 'package:rating_dialog/rating_dialog.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -51,7 +49,7 @@ class _StartScreenState extends State<StartScreen> {
             Expanded(flex: 1, child: InkWell(onTap: (){
             },child: GestureDetector(onTap: (){
               showDialog(context: context, builder: (context) {
-                return Alert();
+                return About();
               },);
             },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),)))),
           ],

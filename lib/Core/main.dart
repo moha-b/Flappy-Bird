@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_import
+// ignore_for_file: prefer_const_constructors, unnecessary_import, unused_local_variable
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,12 +6,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../Constant/constant.dart';
 import '../Layouts/Pages/page_start_screen.dart';
 
-void main() async{
-
+void main() async {
   await Hive.initFlutter();
   var box = Hive.openBox('user');
   runApp(MaterialApp(
-    home: MyApp(), debugShowCheckedModeBanner: false,
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -23,9 +23,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     setAudio();
@@ -44,7 +43,7 @@ class _MyAppState extends State<MyApp> {
 
     audioPlayer.onAudioPositionChanged.listen((newPosition) {
       setState(() {
-        position = newPosition ;
+        position = newPosition;
       });
     });
 
@@ -53,15 +52,15 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future setAudio() async{
+  Future setAudio() async {
     audioPlayer.setReleaseMode(ReleaseMode.LOOP);
-    final  player = AudioCache(prefix: 'assets/audio/');
+    final player = AudioCache(prefix: 'assets/audio/');
     final url = await player.load('backgroundAudio.mp3');
-    audioPlayer.setUrl(url.path,isLocal: true);
+    audioPlayer.setUrl(url.path, isLocal: true);
   }
 
   @override
-  void dispose(){
+  void dispose() {
     audioPlayer.dispose();
     super.dispose();
   }
@@ -75,8 +74,3 @@ class _MyAppState extends State<MyApp> {
     return StartScreen();
   }
 }
-
-
-
-
-  
