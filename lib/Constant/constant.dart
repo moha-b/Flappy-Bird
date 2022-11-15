@@ -2,7 +2,7 @@
 
 import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_settings.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_Button.dart';
+import 'package:flappy_bird/Layouts/Widgets/widget_gradient _button.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Pages/page_home.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
@@ -67,3 +67,21 @@ BoxDecoration background(String y){
   );
 }
 String bird = "assets/pics/bird.png";
+
+BoxDecoration frame(){
+  return BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: Colors.black, width: 2),
+      color: Colors.white54,
+      boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.6),blurRadius: 1.0,offset: Offset(5,5))]);
+}
+Text myText(String txt, Color color, double size){
+  return Text(
+    txt,
+    style: TextStyle(
+        fontSize: size,
+        fontFamily: "Magic4",
+      color: color
+    ),
+  );
+}

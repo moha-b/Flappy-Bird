@@ -13,7 +13,8 @@ class Button extends StatelessWidget {
   double width;
   double height;
   String type;
-  Button({required this.width, required this.height,this.icon, required this.type,Key? key}) : super(key: key);
+  String buttonType;
+  Button({required this.width, required this.height,this.icon, required this.type,required this.buttonType,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class Button extends StatelessWidget {
       child: Container(
           width: width,
           height: height,
+          margin: EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: Colors.black),
@@ -30,7 +32,8 @@ class Button extends StatelessWidget {
                 end: Alignment.bottomCenter),
           ),
           alignment: Alignment.center,
-          child: icon
+          child: buttonType == "text"? Text("Play",style: TextStyle(fontFamily: "Magic4",color: Colors.green,fontSize: 35,),)
+              : icon
       ),
       onTap: (){
           if(type == Navigation.home.name){
