@@ -1,18 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
-import 'package:flappy_bird/Constant/constant.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_about_.alert.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
+import '../../Global/Constant/constant.dart';
+import '../../Global/Function/functions.dart';
 import '../Widgets/widget_gradient _button.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
-
   @override
   State<StartScreen> createState() => _StartScreenState();
 }
 class _StartScreenState extends State<StartScreen> {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -38,6 +36,7 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 }
+
 // three buttons
 Column Buttons(){
   return Column(
@@ -64,7 +63,7 @@ class AboutUs extends StatelessWidget {
       margin: EdgeInsets.only(top: size.height * 0.2),
       child: GestureDetector(onTap: (){
         showDialog(context: context, builder: (context) {
-          return About();
+          return dialog(context);
         },);
       },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),)),
     );

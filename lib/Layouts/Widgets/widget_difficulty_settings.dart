@@ -1,40 +1,33 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flappy_bird/Global/Function/functions.dart';
 import 'package:flutter/material.dart';
 
-import '../../Constant/constant.dart';
+import '../../Global/Constant/constant.dart';
+
 
 class DifficultySettings extends StatelessWidget {
   const DifficultySettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(child: Container(margin: EdgeInsets.only(top: 20,bottom: 10),child: Text("Difficulty",style: TextStyle(fontSize: 20,fontFamily: "Magic4"))),),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(onPressed: (){
-              barrierMovement = 0.05 ;
-            },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green.shade300,
-              ), child: Text("Easy",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-            ElevatedButton(onPressed: (){
-              barrierMovement = 0.08 ;
-            },style: ElevatedButton.styleFrom(
-              primary: Colors.yellow.shade700,
-            ), child: Text("Medium",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-            ElevatedButton(onPressed: (){
-              barrierMovement = 0.1 ;
-            },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red.shade300,
-              ), child: Text("Hard",style: TextStyle(fontSize: 20,fontFamily: "Magic4")),),
-          ],
-        ),
-      ],
+    return Container(
+      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.026),
+      child: Column(
+        children: [
+          Container(margin: EdgeInsets.symmetric(vertical: 10),
+              child: myText("Difficulty",Colors.black,20)
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              gameButton(() { barrierMovement = 0.05 ; }, "Easy", Colors.green.shade300),
+              gameButton(() { barrierMovement = 0.08 ; }, "Medium", Colors.yellow.shade700),
+              gameButton(() { barrierMovement = 0.01 ; }, "Hard", Colors.red.shade300),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

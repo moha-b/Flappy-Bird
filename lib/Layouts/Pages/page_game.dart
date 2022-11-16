@@ -8,7 +8,9 @@ import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../Constant/constant.dart';
+
+import '../../Global/Constant/constant.dart';
+import '../../Global/Function/functions.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -38,14 +40,10 @@ class _HomePageState extends State<HomePage> {
                   // Tap to play text
                   Container(
                     alignment: Alignment(0, -0.3),
-                    child: Text(
-                      gameHasStarted ? '' : 'TAP TO START',
-                      style: TextStyle(color: Colors.white, fontSize: 25,fontFamily: "Magic4"),
-                    ),
+                    child: myText(gameHasStarted ? '' : 'TAP TO START',Colors.white,25),
                   ),
                   Barrier(barrierHeight[0][0], barrierWidth, barrierX[0], true),
-                  Barrier(
-                      barrierHeight[0][1], barrierWidth, barrierX[0], false),
+                  Barrier(barrierHeight[0][1], barrierWidth, barrierX[0], false),
                   Barrier(barrierHeight[1][0], barrierWidth, barrierX[1], true),
                   Barrier(barrierHeight[1][1], barrierWidth, barrierX[1], false),
                   Positioned(
@@ -73,7 +71,6 @@ class _HomePageState extends State<HomePage> {
 
   // Jump Function:
   void jump() {
-
     setState(() {
       time = 0;
       initialHeight = yAxis;
@@ -130,7 +127,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  ///TODO: Make sure the [Bird] doesn't go out screen & hit the barrier
+  /// Make sure the [Bird] doesn't go out screen & hit the barrier
   bool birdIsDead() {
     // Screen
     if (yAxis > 1.26 || yAxis < -1.1) {
@@ -165,46 +162,27 @@ class _HomePageState extends State<HomePage> {
 
   // TODO: Alert Dialog with 2 options (try again, exit)
   void _showDialog() {
-
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          title: Text(
-            "..Oops",
-            style: TextStyle(color: Colors.blue[900], fontSize: 35,fontFamily: "Magic4"),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          title: myText("..Oops", Colors.blue[900], 35),
           actionsPadding: EdgeInsets.only(right: 8, bottom: 8),
           content: Container(
-
             child: Lottie.asset("assets/pics/loss.json",
                 fit: BoxFit.cover),
-
           ),
           actions: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.grey,
-              ),
-              child: Text("Exit",
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
-              onPressed: () {
-                resetGame();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),));
-              },
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-              ),
-              child: Text("try again",
-                  style: TextStyle(color: Colors.white, fontSize: 17,fontFamily: "Magic4")),
-              onPressed: () => resetGame()
-            ),
+            gameButton(() {
+              resetGame();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen(),));
+            }, "Exit", Colors.grey),
+            gameButton(() {
+              resetGame();
+            }, "try again", Colors.green),
           ],
         );
       },

@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_difficulty_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_music_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_themes_settings.dart';
 import 'package:flutter/material.dart';
-import '../../Constant/constant.dart';
-import 'package:audioplayers/audioplayers.dart';
+
+import '../../Global/Constant/constant.dart';
+import '../../Global/Function/functions.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -30,7 +30,9 @@ class _SettingsState extends State<Settings> {
             Container(
               margin: EdgeInsets.only(top: size.height * 0.08,left: 8,bottom: 10),
               alignment: Alignment(-1,0),
-              child: Icon(Icons.arrow_back,size: 50,color: Colors.white,),
+              child: IconButton(onPressed: (){
+                Navigator.pop(context);
+              },icon: Icon(Icons.arrow_back,size: 50,color: Colors.white,)),
             ),
             Container(
               width: size.width * 0.78,

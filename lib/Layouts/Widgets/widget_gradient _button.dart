@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
-import 'package:flappy_bird/Constant/constant.dart';
 import 'package:flappy_bird/Layouts/Pages/page_RateUs.dart';
 import 'package:flutter/material.dart';
-import '../Pages/page_home.dart';
+import '../../Global/Constant/constant.dart';
+import '../Pages/page_game.dart';
 import '../Pages/page_settings.dart';
 import '../Pages/page_RateUs.dart';
 

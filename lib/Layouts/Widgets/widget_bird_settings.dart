@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-import '../../Constant/constant.dart';
+import '../../Global/Constant/constant.dart';
+import '../../Global/Function/functions.dart';
+
 
 class BirdSettings extends StatelessWidget {
   const BirdSettings({Key? key}) : super(key: key);
@@ -11,7 +13,7 @@ class BirdSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(margin: EdgeInsets.symmetric(vertical: 12),child: myText("Characters",Colors.black,20)),
+        Container(margin: EdgeInsets.symmetric(vertical: 10),child: myText("Characters",Colors.black,20)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
