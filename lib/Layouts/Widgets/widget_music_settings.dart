@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 
 
 class MusicSettings extends StatefulWidget {
@@ -26,20 +26,9 @@ class _MusicSettingsState extends State<MusicSettings> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(onTap: () async {
-                //TODO: play Music
-                isPlaying = false;
-                if (isPlaying == false) {
-                  await audioPlayer.resume();
-                }
-              },child: Icon(Icons.music_note_rounded,size: 40,)),
-              GestureDetector(onTap: () async {
-                isPlaying = true;
-                //TODO: play Music
-                if (isPlaying == true)  {
-                await audioPlayer.pause();
-                }
-              },
+              GestureDetector(onTap: () async {},
+                  child: Icon(Icons.music_note_rounded,size: 40,)),
+              GestureDetector(onTap: () async {},
                   child: Icon(Icons.music_off_rounded,size: 40)),
             ],
           ),

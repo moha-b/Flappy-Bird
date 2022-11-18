@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../Global/Constant/constant.dart';
+import '../../Global/constant.dart';
 
 class Bird extends StatelessWidget {
   final double yAxis;

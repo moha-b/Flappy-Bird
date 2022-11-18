@@ -7,8 +7,8 @@ import 'package:flappy_bird/Layouts/Widgets/widget_music_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_themes_settings.dart';
 import 'package:flutter/material.dart';
 
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);

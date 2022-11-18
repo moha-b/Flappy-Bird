@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 
 
 class ThemesSettings extends StatefulWidget {

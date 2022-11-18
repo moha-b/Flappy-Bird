@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Global/Function/functions.dart';
+import 'package:flappy_bird/Global/functions.dart';
 import 'package:flutter/material.dart';
 
-import '../../Global/Constant/constant.dart';
+import '../../Global/constant.dart';
 
 
 class DifficultySettings extends StatelessWidget {

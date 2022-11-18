@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../Constant/constant.dart';
+import 'constant.dart';
 
 Text myText(String txt, Color? color, double size){
   return Text(

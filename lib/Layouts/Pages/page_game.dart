@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, avoid_print
 
 import 'dart:async';
-import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -21,11 +19,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      TOP_SCORE = read(1);
-    }catch(error){
-      print('$error');
-    }
     return GestureDetector(
       onTap: gameHasStarted ? jump : startGame,
       child: Scaffold(
@@ -117,8 +110,6 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           if (SCORE == TOP_SCORE) {
             TOP_SCORE++;
-            // TODO: add the Top score to Database
-            write(1, TOP_SCORE);
           }
           SCORE++;
           // print("Score : $SCORE, Best: $TOP_SCORE");

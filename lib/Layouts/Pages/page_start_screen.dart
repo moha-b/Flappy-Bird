@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 import '../Widgets/widget_gradient _button.dart';
 
 class StartScreen extends StatefulWidget {

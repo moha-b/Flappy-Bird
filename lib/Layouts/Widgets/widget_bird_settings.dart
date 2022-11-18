@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../Global/Constant/constant.dart';
-import '../../Global/Function/functions.dart';
+import '../../Global/constant.dart';
+import '../../Global/functions.dart';
 
 
 class BirdSettings extends StatelessWidget {

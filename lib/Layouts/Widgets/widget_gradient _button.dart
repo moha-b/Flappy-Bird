@@ -2,7 +2,7 @@
 
 import 'package:flappy_bird/Layouts/Pages/page_RateUs.dart';
 import 'package:flutter/material.dart';
-import '../../Global/Constant/constant.dart';
+import '../../Global/constant.dart';
 import '../Pages/page_game.dart';
 import '../Pages/page_settings.dart';
 import '../Pages/page_RateUs.dart';

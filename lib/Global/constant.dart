@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Layouts/Pages/page_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_gradient _button.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Pages/page_game.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 /// SCORE Variables calculated in function [startGame] in [HomePage]
 int SCORE = 0;
@@ -44,12 +43,6 @@ double screenStart = 3.5;
 bool theme = true;
 Color c = Colors.yellow;
 
-/// Background Music
-final audioPlayer = AudioPlayer();
-bool isPlaying = false;
-Duration duration = Duration.zero;
-Duration position = Duration.zero;
-
 
 /// to decide which page that class [Button] will navigate
 enum Navigation{ home, settings, rateUs }
@@ -61,4 +54,3 @@ String about = "The game is a side-scroller where the player"
 String im = "0";
 
 String bird = "assets/pics/bird.png";
-
