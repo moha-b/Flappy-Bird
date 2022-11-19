@@ -6,11 +6,10 @@ import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Pages/page_game.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 /// SCORE Variables calculated in function [startGame] in [HomePage]
-int SCORE = 0;
-int TOP_SCORE = 0;
+int score = 0;
+int topScore = 0;
 
 /// [Bird] Variables
 double yAxis = 0;

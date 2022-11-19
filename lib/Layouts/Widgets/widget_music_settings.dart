@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flappy_bird/Database/database.dart';
 import 'package:flutter/material.dart';
 
 import '../../Global/constant.dart';
@@ -26,9 +27,13 @@ class _MusicSettingsState extends State<MusicSettings> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(onTap: () async {},
+              GestureDetector(onTap: () async {
+                write("audio", true);
+              },
                   child: Icon(Icons.music_note_rounded,size: 40,)),
-              GestureDetector(onTap: () async {},
+              GestureDetector(onTap: () async {
+                write("audio", false);
+              },
                   child: Icon(Icons.music_off_rounded,size: 40)),
             ],
           ),

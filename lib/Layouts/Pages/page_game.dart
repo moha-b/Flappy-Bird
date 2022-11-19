@@ -6,7 +6,9 @@ import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
+import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
@@ -44,8 +46,8 @@ class _HomePageState extends State<HomePage> {
                     child: Container(child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Score : $SCORE",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4"),), // Best TEXT
-                        Text("Best : $TOP_SCORE",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
+                        Text("Score : $score",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4"),), // Best TEXT
+                        Text("Best : $topScore",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "Magic4")),
                       ],
                     ),),
                   ),
@@ -104,15 +106,16 @@ class _HomePageState extends State<HomePage> {
     /* <  Calculate Score  > */
     Timer.periodic(Duration(seconds: 2), (timer) {
       if (birdIsDead()) {
+        // Todo : save the top score in the database  <---
+        write("score", topScore);
         timer.cancel();
-        SCORE = 0;
+        score = 0;
       } else {
         setState(() {
-          if (SCORE == TOP_SCORE) {
-            TOP_SCORE++;
+          if (score == topScore) {
+            topScore++;
           }
-          SCORE++;
-          // print("Score : $SCORE, Best: $TOP_SCORE");
+          score++;
         });
       }
     });
@@ -124,7 +127,6 @@ class _HomePageState extends State<HomePage> {
     if (yAxis > 1.26 || yAxis < -1.1) {
       return true;
     }
-
     /// Barrier hitBox
     for (int i = 0; i < barrierX.length; i++) {
       if (barrierX[i] <= birdWidth &&
@@ -144,7 +146,7 @@ class _HomePageState extends State<HomePage> {
       yAxis = 0;
       gameHasStarted = false;
       time = 0;
-      SCORE = 0;
+      score = 0;
       initialHeight = yAxis;
       barrierX[0] = 2;
       barrierX[1] = 3.4;

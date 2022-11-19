@@ -6,7 +6,9 @@ import 'package:flappy_bird/Layouts/Widgets/widget_difficulty_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_music_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_themes_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
+import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
@@ -17,6 +19,7 @@ class Settings extends StatefulWidget {
   State<Settings> createState() => _SettingsState();
 }
 class _SettingsState extends State<Settings> {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

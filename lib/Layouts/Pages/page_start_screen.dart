@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 import '../Widgets/widget_gradient _button.dart';
@@ -11,6 +13,16 @@ class StartScreen extends StatefulWidget {
   State<StartScreen> createState() => _StartScreenState();
 }
 class _StartScreenState extends State<StartScreen> {
+
+  final myBox = Hive.box('user');
+
+  @override
+  void initState() {
+    // Todo : initialize the database  <---
+    initial();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery

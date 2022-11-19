@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../Database/database.dart';
 import 'constant.dart';
 
 Text myText(String txt, Color? color, double size){
@@ -49,4 +50,27 @@ AlertDialog dialog(BuildContext context){
       gameButton(() {Navigator.pop(context);}, "Okay", Colors.deepOrange),
     ],
   );
+}
+
+void initial() {
+  if(read("score") != null){
+    topScore = read("score");
+  }else{
+    write("score", topScore);
+  }
+  if(read("background") != null){
+    im = read("background");
+  }else{
+    write("background", im);
+  }
+  if(read("bird") != null){
+    bird = read("bird");
+  }else{
+    write("bird", bird);
+  }
+  if(read("level") != null){
+    barrierMovement = read("level");
+  }else{
+    write("level", barrierMovement);
+  }
 }

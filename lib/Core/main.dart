@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../Layouts/Pages/page_start_screen.dart';
 
-void main() {
-
+void main() async{
+  await Hive.initFlutter();
+  var box = await Hive.openBox('user');
   runApp(
     MaterialApp(
       home: MyApp(),
