@@ -31,7 +31,7 @@ if you clone it just run
 $ flutter pub get
 ```
 
-#### 🤓 Contributors
+#### 🤓 Good people
 
 <a href="https://github.com/moha-b"><img align="left" src="https://user-images.githubusercontent.com/73842931/203227568-87586057-ca54-404c-bf8c-907a00127279.png"  height="75"></a>
 <a href="https://github.com/linah31"><img align="left" src="https://user-images.githubusercontent.com/73842931/203234276-e00a46a2-db2b-4143-8977-5dc63a21f722.png"  height="75"></a>
