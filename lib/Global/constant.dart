@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:audioplayers/audioplayers.dart';
+
 /// SCORE Variables calculated in function [startGame] in [GamePage]
 int score = 0;
 int topScore = 0;
@@ -30,3 +32,6 @@ double barrierMovement = 0.05;
 /// Screen Boundary
 double screenEnd = -1.9;
 double screenStart = 3.5;
+/// audio
+final player = AudioPlayer();
+bool play = true;

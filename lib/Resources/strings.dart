@@ -7,6 +7,6 @@ class Str{
       " controls a bird, attempting to fly between "
       " columns of green pipes without hitting them";
 
-  static String image = "";
+  static String image = "0";
   static String bird = "assets/pics/bird.png";
 }

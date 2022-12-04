@@ -7,11 +7,9 @@
 
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Layouts/Pages/page_game.dart';
+import 'package:flappy_bird/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flappy_bird/core/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

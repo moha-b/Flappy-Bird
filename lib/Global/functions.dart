@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 import '../Database/database.dart';
@@ -72,6 +73,17 @@ void init() {
   }else{
     write("level", barrierMovement);
   }
+  if(read("audio") != null){
+    play = read("audio");
+  }else{
+    write("audio", play);
+  }
+  if(play){
+    player.play(AssetSource("audio/Tintin.mp3"));
+  }else{
+    player.stop();
+  }
+  player.setReleaseMode(ReleaseMode.loop);
 }
 
 void navigate(context,navigate){

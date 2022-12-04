@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_difficulty_settings.dart';
