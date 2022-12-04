@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../Database/database.dart';
@@ -45,7 +46,7 @@ AlertDialog dialog(BuildContext context){
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
     actionsPadding: EdgeInsets.only(right: 8, bottom: 8),
     title: myText("About Flappy Bird",Colors.black, 22),
-    content: Text(about, style: TextStyle(fontFamily: "Magic4"),),
+    content: Text(Res.about, style: TextStyle(fontFamily: "Magic4"),),
     actions: [
       gameButton(() {Navigator.pop(context);}, "Okay", Colors.deepOrange),
     ],
@@ -72,5 +73,19 @@ void initial() {
     barrierMovement = read("level");
   }else{
     write("level", barrierMovement);
+  }
+}
+
+void navigate(context,navigate){
+  switch(navigate){
+    case Res.gamePage:
+      Navigator.pushNamed(context, Res.gamePage);
+      break;
+    case Res.settings:
+      Navigator.pushNamed(context, Res.settings);
+      break;
+    case Res.rateUs:
+      Navigator.pushNamed(context, Res.rateUs);
+      break;
   }
 }

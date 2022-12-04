@@ -7,7 +7,7 @@ import 'package:flappy_bird/Layouts/Pages/page_game.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flutter/material.dart';
 
-/// SCORE Variables calculated in function [startGame] in [HomePage]
+/// SCORE Variables calculated in function [startGame] in [GamePage]
 int score = 0;
 int topScore = 0;
 
@@ -16,7 +16,7 @@ double yAxis = 0;
 double birdWidth = 0.183;
 double birdHeight = 0.183;
 
-/// Variables to calculate bird movements function [startGame] in [HomePage]
+/// Variables to calculate bird movements function [startGame] in [GamePage]
 double time = 0;
 double height = 0;
 double gravity = -3.9; // How strong the Gravity
@@ -47,9 +47,6 @@ Color c = Colors.yellow;
 enum Navigation{ home, settings, rateUs }
 
 //
-String about = "The game is a side-scroller where the player"
-    " controls a bird, attempting to fly between "
-    " columns of green pipes without hitting them";
 String im = "0";
 
 String bird = "assets/pics/bird.png";

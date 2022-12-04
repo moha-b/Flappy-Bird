@@ -12,12 +12,12 @@ import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+class GamePage extends StatefulWidget {
+  GamePage({Key? key}) : super(key: key);
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GamePage> createState() => _GamePageState();
 }
-class _HomePageState extends State<HomePage> {
+class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {

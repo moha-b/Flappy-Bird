@@ -1,20 +1,18 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Layouts/Pages/page_RateUs.dart';
+import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
-import '../../Global/constant.dart';
-import '../Pages/page_game.dart';
-import '../Pages/page_settings.dart';
-import '../Pages/page_RateUs.dart';
+import '../../Global/functions.dart';
+
 
 
 class Button extends StatelessWidget {
-  Icon? icon;
-  double width;
-  double height;
-  String type;
-  String buttonType;
-  Button({required this.width, required this.height,this.icon, required this.type,required this.buttonType,Key? key}) : super(key: key);
+  final Icon? icon;
+  final double width;
+  final double height;
+  final String page;
+  final String buttonType;
+  const Button({required this.width, required this.height,this.icon, required this.page,required this.buttonType,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +30,11 @@ class Button extends StatelessWidget {
                 end: Alignment.bottomCenter),
           ),
           alignment: Alignment.center,
-          child: buttonType == "text"? Text("Play",style: TextStyle(fontFamily: "Magic4",color: Colors.green,fontSize: 35,),)
+          child: buttonType == "text"? myText("Play",Colors.green,35)
               : icon
       ),
       onTap: (){
-          if(type == Navigation.home.name){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
-            );
-          }else if(type == Navigation.settings.name){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Settings(),
-              ),
-            );
-          }else{
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => RateUs(),
-              ),
-            );
-          }
+        navigate(context, page);
       },
     );
   }
