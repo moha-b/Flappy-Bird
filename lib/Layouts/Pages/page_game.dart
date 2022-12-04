@@ -1,16 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, avoid_print
-
 import 'dart:async';
 import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
 import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
+import '../../Resources/strings.dart';
 
 class GamePage extends StatefulWidget {
   GamePage({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _GamePageState extends State<GamePage> {
           Expanded(
             flex: 3,
             child: Container(
-              decoration: background(im),
+              decoration: background(Str.image),
               child: Stack(
                 children: [
                   Bird(yAxis, birdWidth, birdHeight),
@@ -80,7 +79,6 @@ class _GamePageState extends State<GamePage> {
       height = gravity * time * time + velocity * time;
       setState(() {
         yAxis = initialHeight - height;
-
       });
       /* <  Barriers Movements  > */
       setState(() {

@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flappy_bird/Database/database.dart';
+import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
-import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
 
 class ThemesSettings extends StatefulWidget {
   const ThemesSettings({Key? key}) : super(key: key);
-
   @override
   State<ThemesSettings> createState() => _ThemesSettingsState();
 }
@@ -27,23 +25,23 @@ class _ThemesSettingsState extends State<ThemesSettings> {
             children: [
               GestureDetector(onTap: (){
                 setState(() {
-                  im = "0";
-                  write("background", im);
-                  background(im);
+                  Str.image = "0";
+                  write("background", Str.image);
+                  background(Str.image);
                 });
               },child: Image.asset("assets/pics/0.png",width: 73,height: 70,)),
               GestureDetector(onTap: (){
                 setState(() {
-                  im = "1";
-                  write("background", im);
-                  background(im);
+                  Str.image = "1";
+                  write("background", Str.image);
+                  background(Str.image);
                 });
               },child: Image.asset("assets/pics/1.png",width: 73,height: 70,)),
               GestureDetector(onTap: (){
                 setState(() {
-                  im = "2";
-                  write("background", im);
-                  background(im);
+                  Str.image = "2";
+                  write("background", Str.image);
+                  background(Str.image);
                 });
               },child: Image.asset("assets/pics/2.png",width: 63,height: 66,)),
             ],

@@ -19,7 +19,7 @@ class _StartScreenState extends State<StartScreen> {
   @override
   void initState() {
     // Todo : initialize the database  <---
-    initial();
+    init();
     super.initState();
   }
 
@@ -32,13 +32,13 @@ class _StartScreenState extends State<StartScreen> {
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: background(im),
+        decoration: background(Str.image),
         child: Column(
           children: [
             // Flappy bird text
             Container(
               margin: EdgeInsets.only(top: size.height * 0.25),
-                child: Text("FlappyBird", style: TextStyle(fontSize: 70,fontFamily: "Magic4",color: Colors.white,),)),
+                child: myText("FlappyBird", Colors.white,70)),
             Bird(yAxis, birdWidth, birdHeight),
             _buttons(),
             AboutUs(size: size,)
@@ -53,12 +53,12 @@ class _StartScreenState extends State<StartScreen> {
 Column _buttons(){
   return Column(
     children: [
-      Button(buttonType: "text",height: 60,width: 278,icon: Icon(Icons.play_arrow_rounded,size: 60,color: Colors.green,),page: Res.gamePage,),
+      Button(buttonType: "text",height: 60,width: 278,icon: Icon(Icons.play_arrow_rounded,size: 60,color: Colors.green,),page: Str.gamePage,),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Button(buttonType: "icon",height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),page: Res.settings,),
-          Button(buttonType: "icon",height: 60,width: 110,icon: Icon(Icons.star,size: 40,color: Colors.deepOrange,),page: Res.rateUs,),
+          Button(buttonType: "icon",height: 60,width: 110,icon: Icon(Icons.settings,size: 40,color: Colors.grey.shade900,),page: Str.settings,),
+          Button(buttonType: "icon",height: 60,width: 110,icon: Icon(Icons.star,size: 40,color: Colors.deepOrange,),page: Str.rateUs,),
         ],
       ),
     ],
@@ -77,7 +77,7 @@ class AboutUs extends StatelessWidget {
         showDialog(context: context, builder: (context) {
           return dialog(context);
         },);
-      },child: Text("About Us",style: TextStyle(fontSize: 20,fontFamily: "Magic4",color: Colors.white),)),
+      },child: myText("About Us",Colors.white,20)),
     );
   }
 }

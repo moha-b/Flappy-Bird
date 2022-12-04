@@ -5,11 +5,8 @@ import 'package:flappy_bird/Layouts/Widgets/widget_bird_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_difficulty_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_music_settings.dart';
 import 'package:flappy_bird/Layouts/Widgets/widget_themes_settings.dart';
+import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-
-import '../../Database/database.dart';
-import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
 class Settings extends StatefulWidget {
@@ -27,7 +24,7 @@ class _SettingsState extends State<Settings> {
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: background(im),
+        decoration: background(Str.image),
         child: Column(
           children: [
             Container(

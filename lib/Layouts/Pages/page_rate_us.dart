@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../Global/constant.dart';
 import '../../Global/functions.dart';
+import '../../Resources/strings.dart';
 
 class RateUs extends StatelessWidget {
   RateUs({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class RateUs extends StatelessWidget {
         body: Container(
             width: size.width,
             height: size.height,
-            decoration: background(im),
+            decoration: background(Str.image),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

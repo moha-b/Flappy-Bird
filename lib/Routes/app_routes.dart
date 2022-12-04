@@ -9,13 +9,13 @@ import '../Resources/strings.dart';
 class AppRoute{
   Route? generateRoute(RouteSettings settings){
     switch(settings.name){
-      case Res.home:
+      case Str.home:
         return MaterialPageRoute(builder: (_) => StartScreen());
-      case Res.gamePage:
+      case Str.gamePage:
         return MaterialPageRoute(builder: (_) => GamePage());
-      case Res.rateUs:
+      case Str.rateUs:
         return MaterialPageRoute(builder: (_) => RateUs());
-      case Res.settings:
+      case Str.settings:
         return MaterialPageRoute(builder: (_) => Settings());
       default:
         _errorRoute();

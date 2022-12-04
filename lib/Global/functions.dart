@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
-
 import '../Database/database.dart';
 import 'constant.dart';
 
@@ -46,28 +44,28 @@ AlertDialog dialog(BuildContext context){
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
     actionsPadding: EdgeInsets.only(right: 8, bottom: 8),
     title: myText("About Flappy Bird",Colors.black, 22),
-    content: Text(Res.about, style: TextStyle(fontFamily: "Magic4"),),
+    content: Text(Str.about, style: TextStyle(fontFamily: "Magic4"),),
     actions: [
       gameButton(() {Navigator.pop(context);}, "Okay", Colors.deepOrange),
     ],
   );
 }
 
-void initial() {
+void init() {
   if(read("score") != null){
     topScore = read("score");
   }else{
     write("score", topScore);
   }
   if(read("background") != null){
-    im = read("background");
+    Str.image = read("background");
   }else{
-    write("background", im);
+    write("background", Str.image);
   }
   if(read("bird") != null){
-    bird = read("bird");
+    Str.bird = read("bird");
   }else{
-    write("bird", bird);
+    write("bird", Str.bird);
   }
   if(read("level") != null){
     barrierMovement = read("level");
@@ -78,14 +76,14 @@ void initial() {
 
 void navigate(context,navigate){
   switch(navigate){
-    case Res.gamePage:
-      Navigator.pushNamed(context, Res.gamePage);
+    case Str.gamePage:
+      Navigator.pushNamed(context, Str.gamePage);
       break;
-    case Res.settings:
-      Navigator.pushNamed(context, Res.settings);
+    case Str.settings:
+      Navigator.pushNamed(context, Str.settings);
       break;
-    case Res.rateUs:
-      Navigator.pushNamed(context, Res.rateUs);
+    case Str.rateUs:
+      Navigator.pushNamed(context, Str.rateUs);
       break;
   }
 }

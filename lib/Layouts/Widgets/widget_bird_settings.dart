@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flappy_bird/Database/database.dart';
+import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../Global/constant.dart';
@@ -21,8 +22,8 @@ class BirdSettings extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                bird = "assets/pics/bird.png";
-                write("bird", bird);
+                Str.bird = "assets/pics/bird.png";
+                write("bird", Str.bird);
               },
               child: SizedBox(
                 width: 75,
@@ -35,8 +36,8 @@ class BirdSettings extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                bird = "assets/pics/blue.png";
-                write("bird", bird);
+                Str.bird = "assets/pics/blue.png";
+                write("bird", Str.bird);
               },
               child: SizedBox(
                 width: 75,
@@ -49,8 +50,8 @@ class BirdSettings extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                bird = "assets/pics/green.png";
-                write("bird", bird);
+                Str.bird = "assets/pics/green.png";
+                write("bird", Str.bird);
               },
               child: SizedBox(
                 width: 75,

@@ -1,12 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Layouts/Pages/page_settings.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_gradient _button.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
-import 'package:flappy_bird/Layouts/Pages/page_game.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
-import 'package:flutter/material.dart';
-
 /// SCORE Variables calculated in function [startGame] in [GamePage]
 int score = 0;
 int topScore = 0;
@@ -37,16 +30,3 @@ double barrierMovement = 0.05;
 /// Screen Boundary
 double screenEnd = -1.9;
 double screenStart = 3.5;
-
-///[Settings] Variables
-bool theme = true;
-Color c = Colors.yellow;
-
-
-/// to decide which page that class [Button] will navigate
-enum Navigation{ home, settings, rateUs }
-
-//
-String im = "0";
-
-String bird = "assets/pics/bird.png";
