@@ -1,7 +1,9 @@
 # Flappy-Bird
 ![banner](https://user-images.githubusercontent.com/73842931/203234278-72dc4c28-0542-475e-8b0a-a64993b7f79b.png)
 
-A ridiculous game created by [Flutter](https://flutter.dev/), all you have to do is touch the screen to make the bird leap as long as you avoid the barriers, you'll be OK. Depending on how long you play for, the score will be calculated. On the screen, your top score will always be displayed. [Hive](https://docs.hivedb.dev/#/) is a lightweight, user-friendly, and ❤️ Simple, powerful database with 🎈 NO native dependencies that we utilize.
+A ridiculous game created by [Flutter](https://flutter.dev/), all you have to do is touch the screen to make the bird leap as long as you avoid the barriers, you'll be OK. Depending on how long you play for, the score will be calculated. On the screen, your top score will always be displayed. 
+
+[Hive](https://docs.hivedb.dev/#/) is a lightweight, user-friendly, and ❤️ Simple, powerful database with 🎈 NO native dependencies that we utilize.
 
 ![Trim](https://user-images.githubusercontent.com/73842931/188281369-8281ac34-16cb-41d2-a64b-c41b153afc7a.gif)
 
