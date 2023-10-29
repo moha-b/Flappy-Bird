@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
-
 class MusicSettings extends StatefulWidget {
   const MusicSettings({Key? key}) : super(key: key);
 

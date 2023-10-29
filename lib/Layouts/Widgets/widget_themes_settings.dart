@@ -4,7 +4,6 @@ import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 import '../../Global/functions.dart';
 
-
 class ThemesSettings extends StatefulWidget {
   const ThemesSettings({Key? key}) : super(key: key);
   @override
