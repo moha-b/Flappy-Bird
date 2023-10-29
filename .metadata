@@ -1,11 +1,11 @@
 # This file tracks properties of this Flutter project.
 # Used by Flutter tool to assess capabilities and perform upgrades etc.
 #
-# This file should be version controlled.
+# This file should be version controlled and should not be manually edited.
 
 version:
-  revision: cd41fdd495f6944ecd3506c21e94c6567b073278
-  channel: stable
+  revision: "2f708eb8396e362e280fac22cf171c2cb467343c"
+  channel: "stable"
 
 project_type: app
 
@@ -13,14 +13,14 @@ project_type: app
 migration:
   platforms:
     - platform: root
-      create_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
-      base_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
+      create_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
+      base_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
     - platform: android
-      create_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
-      base_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
+      create_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
+      base_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
     - platform: ios
-      create_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
-      base_revision: cd41fdd495f6944ecd3506c21e94c6567b073278
+      create_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
+      base_revision: 2f708eb8396e362e280fac22cf171c2cb467343c
 
   # User provided section
 
@@ -31,4 +31,3 @@ migration:
   unmanaged_files:
     - 'lib/main.dart'
     - 'ios/Runner.xcodeproj/project.pbxproj'
-

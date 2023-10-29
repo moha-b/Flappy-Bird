@@ -7,14 +7,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'Layouts/Pages/page_start_screen.dart';
 import 'Resources/strings.dart';
 
-void main() async{
+void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('user');
-  runApp(MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {

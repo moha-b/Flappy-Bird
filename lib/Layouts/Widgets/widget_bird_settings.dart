@@ -4,7 +4,6 @@ import 'package:flappy_bird/Database/database.dart';
 import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../Global/constant.dart';
 import '../../Global/functions.dart';
 
 class BirdSettings extends StatelessWidget {

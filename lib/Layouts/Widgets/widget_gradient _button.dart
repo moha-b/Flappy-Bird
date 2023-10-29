@@ -1,10 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flappy_bird/Resources/strings.dart';
 import 'package:flutter/material.dart';
 import '../../Global/functions.dart';
-
-
 
 class Button extends StatelessWidget {
   final Icon? icon;
